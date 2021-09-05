@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.btc.application.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".WithdrawActivity"
+            android:label="@string/action_withdraw"
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+        <activity
+            android:name=".RechargeActivity"
+            android:label="@string/action_recharge"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".Set2ndpwdActivity"
+            android:label="@string/title_2ndsetpwd"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ScActivity"
+            android:label="@string/title_activity_sc"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".NoticeActivity"
+            android:label="@string/title_notice"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name="com.btc.application.MainActivity"
+            android:label="@string/title_activity_main"
+            android:parentActivityName="com.btc.application.ui.login.LoginActivity" />
+        <activity
+            android:name="com.btc.application.ui.register.RegisterActivity"
+            android:label="@string/action_register" />
+        <activity
+            android:name="com.btc.application.ui.login.LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

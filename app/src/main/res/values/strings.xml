@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">GCM</string>
+    <!-- Strings related to login -->
+    <string name="prompt_username">请输入账户名称</string>
+    <string name="prompt_email">请输入邮箱地址</string>
+    <string name="prompt_password">请输入密码</string>
+    <string name="prompt_set2ndpwd">请输入6位数字密码</string>
+    <string name="prompt_confirmpwd">请再次输入密码</string>
+    <string name="prompt_address">请输入地址</string>
+    <string name="prompt_coincount">请输入数量，至少100币,手续费5%</string>
+    <string name="prompt_2ndpwd">请输入二级密码</string>
+    <string name="action_register">注册</string>
+    <string name="action_copy">复制</string>
+    <string name="action_buynow">立即购买</string>
+    <string name="invite_code">请输入邀请码</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="action_transfer">转账</string>
+    <string name="action_set2ndpwd">设置二级密码</string>
+    <string name="action_exit">退出</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">用户名不合法！</string>
+    <string name="invalid_password">密码必须大于5位！</string>
+    <string name="login_failed">"登录失败！"</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">首页</string>
+    <string name="title_block">区块</string>
+    <string name="title_dashboard">生态</string>
+    <string name="title_notifications">资产</string>
+    <string name="title_extends">我的</string>
+    <string name="title_label1">1.</string>
+    <string name="title_label2">2.</string>
+    <string name="title_label3">3.</string>
+    <string name="title_noblock">您还没有购买区块，请去首页点击购买！</string>
+    <string name="title_account">账户</string>
+    <string name="title_gcm">GCM可用</string>
+    <string name="title_freeze">冻结</string>
+    <string name="title_cny">折合cny</string>
+    <string name="title_notice">公告</string>
+    <string name="title_nonotice">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;自2021年3月起GCM正式登陆中国大陆开始搭建创世区块！\n\n\n\n\n\n\n
+        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+        &#160;&#160;&#160;&#160;&#160;&#160;&#160;
+        2021年3月1日</string>
+    <string name="title_username">用户名称</string>
+    <string name="title_email">邮箱</string>
+    <string name="title_invite_code">邀请码</string>
+    <string name="title_mygroup">我的社群</string>
+    <string name="title_coming_soon">敬请期待</string>
+    <string name="title_modpwd">修改登录密码</string>
+    <string name="title_2ndsetpwd">二级密码设置</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="action_recharge">充币</string>
+    <string name="action_withdraw">提币</string>
+    <string name="title_address">地址</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_sc">安全中心</string>
+</resources>

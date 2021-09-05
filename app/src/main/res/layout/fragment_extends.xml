@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mine"
+    tools:context="com.btc.application.ui.extend.ExtendsFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.btc.application.ui.extend.PersonalItemView
+            android:id="@+id/item_username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:layout_marginTop="10dp"
+            app:icon="@drawable/icon_account"
+            app:name="@string/title_username"
+            app:show_line="true"
+            app:show_more="true" />
+
+        <com.btc.application.ui.extend.EmailItemView
+            android:id="@+id/item_email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/item_username"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/icon_email"
+            app:name="@string/title_email"
+            app:show_line="true"
+            app:show_more="true" />
+
+        <com.btc.application.ui.extend.InviteCodeItemView
+            android:id="@+id/item_invite_code"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/item_email"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/icon_invite"
+            app:name="@string/title_invite_code"
+            app:show_line="true"
+            app:show_more="true" />
+
+        <!--<com.btc.application.ui.extend.GroupItemView
+            android:id="@+id/item_group"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/item_invite_code"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/icon_group"
+            app:name="@string/title_mygroup"
+            app:show_line="true"
+            app:show_more="true" />-->
+
+        <com.btc.application.ui.extend.SCItemView
+            android:id="@+id/item_sc"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/item_invite_code"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/icon_sc"
+            app:name="@string/title_activity_sc"
+            app:show_line="true"
+            app:show_more="true" />
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:background="@drawable/exit"
+            android:text="@string/action_exit"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginTop="50dp"
+            android:layout_below="@id/item_sc"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
