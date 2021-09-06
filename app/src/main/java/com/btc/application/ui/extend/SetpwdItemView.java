@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.btc.application.myapplication.R;
-import com.btc.application.myapplication.ScActivity;
 import com.btc.application.myapplication.Set2ndpwdActivity;
 
 /**
@@ -32,6 +30,9 @@ public class SetpwdItemView extends RelativeLayout {
         TextView name = findViewById(R.id.name);
 
         icon.setImageDrawable(typedArray.getDrawable(R.styleable.PersonaltemView_icon));
+
+//        Glide.with(this).load(R.styleable.PersonaltemView_icon).into(icon);
+
         name.setText(typedArray.getText(R.styleable.PersonaltemView_name));
 
         if (typedArray.getBoolean(R.styleable.PersonaltemView_show_more, false)){
