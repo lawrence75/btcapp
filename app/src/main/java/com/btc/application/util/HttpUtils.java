@@ -19,7 +19,6 @@ public class HttpUtils {
     public static String apiUrl = "http://8.136.237.10:8080/btc/";
 
     public static String sendJsonPost(String Json, String method) {
-        // HttpClient 6.0被抛弃了
         String result = "";
         BufferedReader reader = null;
         try {

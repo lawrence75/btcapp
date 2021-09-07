@@ -33,6 +33,24 @@ public class NotificationsFragment extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     private View root;
     private ViewGroup container;
+
+    private TextView areaView1;
+    private TextView areaView2;
+    private TextView areaView3;
+
+    private TextView labelView1;
+    private TextView labelView2;
+    private TextView labelView3;
+
+    private TextView noDataView;
+
+    private TextView gcmView;
+    private TextView cnyView;
+
+    private SharedPreferences preference;
+    private Integer id;
+    private Integer bit;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -57,6 +75,8 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+        initData();
+
         refreshData(root , this.container);
 
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -68,11 +88,33 @@ public class NotificationsFragment extends Fragment {
         return root;
     }
 
+    public void initData()
+    {
+        areaView1 = root.findViewById(R.id.areaView1);
+        areaView2 = root.findViewById(R.id.areaView2);
+        areaView3 = root.findViewById(R.id.areaView3);
+
+        labelView1 = root.findViewById(R.id.labelView1);
+        labelView2 = root.findViewById(R.id.labelView2);
+        labelView3 = root.findViewById(R.id.labelView3);
+
+        noDataView = root.findViewById(R.id.noDataView);
+
+        gcmView = root.findViewById(R.id.gcmView);
+        cnyView = root.findViewById(R.id.cnyView);
+
+        // 获取SharedPreference
+        preference = container.getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+        // 获取存在SharedPreference中的用户名
+        id = preference.getInt("id", 0);
+        bit = preference.getInt("bit", 0);
+    }
+
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         //进入到当前Fragment
         if (enter){
-            refreshData(root , container);
+//            refreshData(root , container);
             //进行刷新操作
         }else {
 
@@ -83,13 +125,13 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        refreshData(root , container);
+        //refreshData(root , container);
     }
 
     @Override
     public void onResume() {
-        refreshData(root , container);
         super.onResume();
+        refreshData(root , container);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -100,24 +142,7 @@ public class NotificationsFragment extends Fragment {
 
     public void refreshData(View root , ViewGroup container)
     {
-        final TextView areaView1 = root.findViewById(R.id.areaView1);
-        final TextView areaView2 = root.findViewById(R.id.areaView2);
-        final TextView areaView3 = root.findViewById(R.id.areaView3);
 
-        final TextView labelView1 = root.findViewById(R.id.labelView1);
-        final TextView labelView2 = root.findViewById(R.id.labelView2);
-        final TextView labelView3 = root.findViewById(R.id.labelView3);
-
-        final TextView noDataView = root.findViewById(R.id.noDataView);
-
-        final TextView gcmView = root.findViewById(R.id.gcmView);
-        final TextView cnyView = root.findViewById(R.id.cnyView);
-
-        // 获取SharedPreference
-        SharedPreferences preference = container.getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
-        // 获取存在SharedPreference中的用户名
-        Integer id = preference.getInt("id", 0);
-        Integer bit = preference.getInt("bit", 0);
         String method = "user/getUserBlocks/";
         String result = HttpUtils.getJsonByInternet(HttpUtils.apiUrl+method+id);
         Log.d("debugTest",result);
