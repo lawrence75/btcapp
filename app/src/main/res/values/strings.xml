@@ -47,6 +47,7 @@
     <string name="title_mygroup">我的社群</string>
     <string name="title_coming_soon">敬请期待</string>
     <string name="title_modpwd">修改登录密码</string>
+    <string name="title_modCollectionQRCode">修改收款二维码</string>
     <string name="title_2ndsetpwd">二级密码设置</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -62,4 +63,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sc">安全中心</string>
+    <string name="title_activity_pc">个人设置</string>
+    <string name="title_activity_mod_collection_QRcode">修改收款二维码</string>
 </resources>

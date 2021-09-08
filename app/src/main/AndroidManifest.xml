@@ -30,6 +30,14 @@
             android:label="@string/title_activity_sc"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
+            android:name=".PcActivity"
+            android:label="@string/title_activity_pc"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ModCollectionQRCodeActivity"
+            android:label="@string/title_activity_mod_collection_QRcode"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".NoticeActivity"
             android:label="@string/title_notice"
             android:theme="@style/Theme.MyApplication.NoActionBar" />

@@ -2,14 +2,19 @@ package com.btc.application.ui.extend;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.btc.application.myapplication.PcActivity;
 import com.btc.application.myapplication.R;
+import com.btc.application.myapplication.ScActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -46,6 +51,13 @@ public class PersonalItemView extends RelativeLayout {
             line.setVisibility(VISIBLE);
         }
         typedArray.recycle();
+
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, PcActivity.class));
+            }
+        });
     }
 
     // 提供设置控件的描述数据

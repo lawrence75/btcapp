@@ -15,8 +15,8 @@ import java.net.URL;
 public class HttpUtils {
 //    public static String apiUrl = "http://10.255.8.44:8080/btc/";
 //    public static String apiUrl = "http://10.168.31.33:8080/btc/";
-//    public static String apiUrl = "http://192.168.0.104:8080/btc/";
-    public static String apiUrl = "http://8.136.237.10:8080/btc/";
+    public static String apiUrl = "http://192.168.0.103:8080/btc/";
+//    public static String apiUrl = "http://8.136.237.10:8080/btc/";
 
     public static String sendJsonPost(String Json, String method) {
         String result = "";
