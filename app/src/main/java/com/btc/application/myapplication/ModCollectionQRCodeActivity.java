@@ -25,13 +25,13 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set2ndpwd);
+        setContentView(R.layout.activity_mod_collection_qr_code);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView pwdView = findViewById(R.id.pwd);
+       /* final TextView pwdView = findViewById(R.id.pwd);
         final TextView confirmpwdView = findViewById(R.id.confirmpwd);
-        final Button setpwdBtn = findViewById(R.id.setpwd);
+        final Button setpwdBtn = findViewById(R.id.setpwd);*/
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,7 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
             }
         });*/
 
-        setpwdBtn.setOnClickListener(new View.OnClickListener() {
+        /*setpwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 获取SharedPreference
@@ -78,6 +78,6 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
     }
 }

@@ -1,11 +1,8 @@
 package com.btc.application.ui.extend;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -13,9 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.btc.application.myapplication.ModCollectionQRCodeActivity;
-import com.btc.application.myapplication.PcActivity;
 import com.btc.application.myapplication.R;
 
 /**
