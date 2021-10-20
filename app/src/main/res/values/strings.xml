@@ -16,6 +16,7 @@
     <string name="action_sign_in_short">登录</string>
     <string name="action_transfer">转账</string>
     <string name="action_set2ndpwd">设置二级密码</string>
+    <string name="action_set2ndpwd"></string>
     <string name="action_exit">退出</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">用户名不合法！</string>
@@ -47,7 +48,7 @@
     <string name="title_mygroup">我的社群</string>
     <string name="title_coming_soon">敬请期待</string>
     <string name="title_modpwd">修改登录密码</string>
-    <string name="title_modCollectionQRCode">修改收款二维码</string>
+    <string name="title_modCollectionQRCode">修改收款码</string>
     <string name="title_2ndsetpwd">二级密码设置</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -57,6 +58,7 @@
     <string name="action_recharge">充币</string>
     <string name="action_withdraw">提币</string>
     <string name="title_address">地址</string>
+    <string name="tip_modCollectionQRCode">请至少上传一项收款码:</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
 
@@ -64,5 +66,4 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sc">安全中心</string>
     <string name="title_activity_pc">个人设置</string>
-    <string name="title_activity_mod_collection_QRcode">修改收款二维码</string>
 </resources>

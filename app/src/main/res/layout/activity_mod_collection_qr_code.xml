@@ -21,79 +21,72 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--<include layout="@layout/content_set2ndpwd" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />-->
-
-    <!--<EditText
-        android:id="@+id/pwd"
-        android:layout_width="310dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/password"
-        android:hint="@string/prompt_set2ndpwd"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        android:textColorHint="@color/white"
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:singleLine="false"
+        android:text="@string/tip_modCollectionQRCode"
         android:textColor="#ffffff"
+        android:textColorHint="@color/white"
         android:textSize="16sp"
-        android:layout_gravity="center_horizontal"
-        android:maxLength="6"
-        android:digits="0123456789"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/confirmpwd"
-        android:layout_width="310dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="240dp"
-        android:background="@drawable/password"
-        android:hint="@string/prompt_confirmpwd"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        android:textColorHint="@color/white"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:layout_gravity="center_horizontal"
-        android:maxLength="6"
-        android:digits="0123456789"
-        app:layout_constraintTop_toBottomOf="@id/pwd"
-        app:layout_constraintLeft_toLeftOf="@id/pwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/icon1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/more"
+        />
+
+    <ImageView
+        android:id="@+id/icon2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="350dp"
+        android:src="@drawable/more"
+        />
+
+    <ImageView
+        android:id="@+id/icon3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="550dp"
+        android:src="@drawable/more"
+        />
 
     <com.btc.application.util.CustomBtn
-        android:id="@+id/setpwd"
+        android:id="@+id/save_image"
         android:layout_width="310dp"
         android:layout_height="35dp"
         android:layout_marginTop="300dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/buynow"
-        android:text="@string/action_set2ndpwd"
+        android:text="@string/sure"
         android:textColorHint="@color/white"
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
         android:maxLength="6"
         android:digits="0123456789"
-        app:layout_constraintTop_toBottomOf="@id/confirmpwd"
-        app:layout_constraintLeft_toLeftOf="@id/confirmpwd"
+        app:layout_constraintTop_toBottomOf="@id/icon3"
+        app:layout_constraintLeft_toLeftOf="@id/icon3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />-->
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

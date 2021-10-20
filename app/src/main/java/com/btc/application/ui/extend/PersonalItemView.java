@@ -55,7 +55,7 @@ public class PersonalItemView extends RelativeLayout {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, PcActivity.class));
+//                context.startActivity(new Intent(context, PcActivity.class));
             }
         });
     }

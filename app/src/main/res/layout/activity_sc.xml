@@ -21,8 +21,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/RelativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -48,6 +47,17 @@
             android:layout_marginTop="10dp"
             app:icon="@drawable/setpwd"
             app:name="@string/title_2ndsetpwd"
+            app:show_line="true"
+            app:show_more="true" />
+
+        <com.btc.application.ui.extend.ModCollectionQRCodeItemView
+            android:id="@+id/item_modQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="190dp"
+            android:background="#fff"
+            app:icon="@drawable/icon_modheadphoto"
+            app:name="@string/title_modCollectionQRCode"
             app:show_line="true"
             app:show_more="true" />
 
