@@ -338,6 +338,7 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getWindow().getContext().getContentResolver().openInputStream(imageUri));
                         picture.setImageBitmap(bitmap);
+                        HttpUtils.uploadFile(HttpUtils.saveBitmapFile(bitmap));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
