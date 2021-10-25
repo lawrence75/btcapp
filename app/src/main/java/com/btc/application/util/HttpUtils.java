@@ -26,7 +26,7 @@ import java.util.UUID;
 public class HttpUtils {
 //    public static String apiUrl = "http://10.255.8.44:8080/btc/";
 //    public static String apiUrl = "http://10.168.31.63:8080/btc/";
-    public static String apiUrl = "http://192.168.0.103:8080/btc/";
+    public static String apiUrl = "http://192.168.0.105:8080/btc/";
 //    public static String apiUrl = "http://8.136.237.10:8080/btc/";
 
     public static String sendJsonPost(String Json, String method) {
@@ -119,11 +119,14 @@ public class HttpUtils {
     public static final String SUCCESS="1";
     public static final String FAILURE="0";
 
-    public static String uploadFile(File file) {
+    public static String uploadFile(File file) throws IOException {
         String RequestURL = apiUrl + "uploadFilesToFast";
         String BOUNDARY = UUID.randomUUID().toString(); //边界标识 随机生成
         String PREFIX = "--" , LINE_END = "\r\n";
         String CONTENT_TYPE = "multipart/form-data"; //内容类型
+
+        InputStream is = null;
+        OutputStream outputSteam = null;
         try {
             URL url = new URL(RequestURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection(); conn.setReadTimeout(TIME_OUT);
@@ -138,7 +141,7 @@ public class HttpUtils {
             conn.setRequestProperty("Content-Type", CONTENT_TYPE + ";boundary=" + BOUNDARY);
             if(file!=null) {
                 /** * 当文件不为空，把文件包装并且上传 */
-                OutputStream outputSteam=conn.getOutputStream();
+                outputSteam=conn.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(outputSteam);
                 StringBuffer sb = new StringBuffer();
                 sb.append(PREFIX);
@@ -152,7 +155,7 @@ public class HttpUtils {
                 sb.append("Content-Type: application/octet-stream; charset="+CHARSET+LINE_END);
                 sb.append(LINE_END);
                 dos.write(sb.toString().getBytes());
-                InputStream is = new FileInputStream(file);
+                is = new FileInputStream(file);
                 byte[] bytes = new byte[1024];
                 int len = 0;
                 while((len=is.read(bytes))!=-1)
@@ -177,9 +180,21 @@ public class HttpUtils {
                 }
             }
         } catch (MalformedURLException e)
-        { e.printStackTrace(); }
+        {
+            is.close();
+            outputSteam.close();
+        e.printStackTrace(); }
         catch (IOException e)
-        { e.printStackTrace(); }
+        {
+            if (null != is)
+            {
+                is.close();
+            }
+            if (null != outputSteam)
+            {
+                outputSteam.close();
+            }
+            e.printStackTrace(); }
         return FAILURE;
     }
 

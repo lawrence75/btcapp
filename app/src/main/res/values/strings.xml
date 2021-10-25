@@ -47,7 +47,10 @@
     <string name="title_mygroup">我的社群</string>
     <string name="title_coming_soon">敬请期待</string>
     <string name="title_modpwd">修改登录密码</string>
-    <string name="title_modCollectionQRCode">修改收款码</string>
+    <string name="title_mod_collection_info">修改收款账户</string>
+    <string name="title_mod_wechat_code">修改微信收款码</string>
+    <string name="title_mod_alipay_code">修改支付宝收款码</string>
+    <string name="title_mod_bank_account">修改银行账户</string>
     <string name="title_2ndsetpwd">二级密码设置</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

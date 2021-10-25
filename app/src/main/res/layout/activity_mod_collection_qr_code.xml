@@ -41,32 +41,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/icon1"
+        android:id="@+id/icon"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="150dp"
-        android:src="@drawable/more"
-        />
-
-    <ImageView
-        android:id="@+id/icon2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="350dp"
-        android:src="@drawable/more"
-        />
-
-    <ImageView
-        android:id="@+id/icon3"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="550dp"
         android:src="@drawable/more"
         />
 
@@ -84,8 +64,8 @@
         android:layout_gravity="center_horizontal"
         android:maxLength="6"
         android:digits="0123456789"
-        app:layout_constraintTop_toBottomOf="@id/icon3"
-        app:layout_constraintLeft_toLeftOf="@id/icon3"
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        app:layout_constraintLeft_toLeftOf="@id/icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

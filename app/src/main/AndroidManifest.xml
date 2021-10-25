@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -38,8 +37,12 @@
             android:label="@string/title_activity_pc"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
+            android:name=".ModBankAccountActivity"
+            android:label="@string/title_mod_collection_info"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".ModCollectionQRCodeActivity"
-            android:label="@string/title_modCollectionQRCode"
+            android:label="@string/title_mod_bank_account"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".NoticeActivity"

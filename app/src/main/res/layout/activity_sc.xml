@@ -50,14 +50,14 @@
             app:show_line="true"
             app:show_more="true" />
 
-        <com.btc.application.ui.extend.ModCollectionQRCodeItemView
+        <com.btc.application.ui.extend.ModBankAccountItemView
             android:id="@+id/item_modQRCode"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="190dp"
             android:background="#fff"
             app:icon="@drawable/icon_modheadphoto"
-            app:name="@string/title_modCollectionQRCode"
+            app:name="@string/title_mod_collection_info"
             app:show_line="true"
             app:show_more="true" />
 
