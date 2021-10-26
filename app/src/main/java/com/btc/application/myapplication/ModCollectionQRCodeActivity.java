@@ -13,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -30,8 +31,10 @@ import androidx.core.content.FileProvider;
 
 import com.btc.application.util.HttpUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ModCollectionQRCodeActivity extends AppCompatActivity {
@@ -164,7 +167,9 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getWindow().getContext().getContentResolver().openInputStream(imageUri));
                         picture.setImageBitmap(bitmap);
-                        HttpUtils.uploadFile(HttpUtils.saveBitmapFile(bitmap));
+                        //保存图片
+                        String path = "/storage/emulated/0/Android/data/com.btc.application/cache/";
+                        HttpUtils.uploadFile(saveImage(bitmap,path));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -242,5 +247,34 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
         }else {
             Toast.makeText(getWindow().getContext(), "Load Failed", Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * 保存图片
+     * @param bitmap
+     * @param path 保存路径
+     * @throws IOException
+     */
+    public File saveImage(Bitmap bitmap,String path) throws IOException{
+        String imgePath = "";
+        String imgeName = "img";
+        File filePath = new File(path);
+        if(!filePath.exists()){
+            filePath.mkdir();
+        }
+        int i = 0;
+        while(filePath.exists()){
+            imgePath = path+"/"+imgeName+(i++)+".jpg";
+            filePath = new File(imgePath);
+        }
+        BufferedOutputStream bos = new BufferedOutputStream(
+                new FileOutputStream(filePath));
+// 压缩位图到指定的OutputStream
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos);
+// 刷新此缓冲区的输出流
+        bos.flush();
+// 关闭此输出流并释放与此流有关的所有系统资源
+        bos.close();
+        return filePath;
     }
 }

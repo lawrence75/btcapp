@@ -26,8 +26,8 @@ import java.util.UUID;
 public class HttpUtils {
 //    public static String apiUrl = "http://10.255.8.44:8080/btc/";
 //    public static String apiUrl = "http://10.168.31.63:8080/btc/";
-    public static String apiUrl = "http://192.168.0.105:8080/btc/";
-//    public static String apiUrl = "http://8.136.237.10:8080/btc/";
+    public static String apiUrl = "http://192.168.0.101:8080/btc/";
+//    public static String apiUrl = "http://8.136.237.10:8080/btc/";6
 
     public static String sendJsonPost(String Json, String method) {
         String result = "";
@@ -176,6 +176,7 @@ public class HttpUtils {
                 if(res==200)
                 {
                     Log.i(TAG, conn.getResponseMessage());
+                    Log.i(TAG, conn.getContent().toString());
                     return SUCCESS;
                 }
             }
@@ -198,17 +199,4 @@ public class HttpUtils {
         return FAILURE;
     }
 
-    public static File saveBitmapFile(Bitmap bitmap){
-        String fileName = UUID.randomUUID().toString().replaceAll("-","") + ".jpg";
-        File file = new File("/mnt/sdcard/"+fileName);//将要保存图片的路径
-        try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bos.flush();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
 }
