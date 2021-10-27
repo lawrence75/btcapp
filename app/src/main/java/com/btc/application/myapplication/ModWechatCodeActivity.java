@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,9 +27,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+
+import com.btc.application.util.Constant;
+import com.btc.application.util.FileUtils;
 import com.btc.application.util.HttpUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,6 +49,9 @@ public class ModWechatCodeActivity extends AppCompatActivity {
     private PopupWindow pop;
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
+    private Integer id;
+    private String wechatAddress;
+    String TAG = ModWechatCodeActivity.class.getCanonicalName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +66,18 @@ public class ModWechatCodeActivity extends AppCompatActivity {
                 .build());
 
         picture = findViewById(R.id.icon);
+
+        // 获取SharedPreference
+        SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+        // 获取存在SharedPreference中的用户名
+        id = preference.getInt("id", 0);
+        wechatAddress = preference.getString("wechatAddress", "");
+
+        if (null != wechatAddress && !"".equals(wechatAddress))
+        {
+            Bitmap bitmap = FileUtils.url2bitmap(Constant.FILE_URL + wechatAddress);
+            picture.setImageBitmap(bitmap);
+        }
 
         picture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +121,7 @@ public class ModWechatCodeActivity extends AppCompatActivity {
                         //相册
                         if (ContextCompat.checkSelfPermission(getWindow().getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                             //相册中的照片都是存储在SD卡上的，需要申请运行时权限，WRITE_EXTERNAL_STORAGE是危险权限，表示同时授予程序对SD卡的读和写的能力
-//                            ActivityCompat.requestPermissions(getWindow().getContext(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                            ActivityCompat.requestPermissions(ModWechatCodeActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                         }else {
                             openAlbum();
                         }
@@ -164,10 +187,47 @@ public class ModWechatCodeActivity extends AppCompatActivity {
                         picture.setImageBitmap(bitmap);
                         //保存图片
                         String path = "/storage/emulated/0/Android/data/com.btc.application/cache/";
-                        HttpUtils.uploadFile(saveImage(bitmap,path));
+                        String retStr = HttpUtils.uploadFile(saveImage(bitmap,path));
+
+                        JSONObject json = new JSONObject(retStr);
+
+                        String retCode = json.getString("code");
+
+                        if (null != retCode && "000000".equals(retCode))
+                        {
+                            JSONObject jsonObject = new JSONObject();
+                            jsonObject.put("id", id);
+                            jsonObject.put("wechatAddress", json.getJSONObject("data").getString("path"));
+
+                            String method = "user/insertOrUpdate";
+                            String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "PUT");
+                            Log.v(TAG , result);
+                            try {
+                                JSONObject jsonObject1 = new JSONObject(result);
+                                String code = jsonObject1.getString("code");
+                                if ("000000".equals(code))
+                                {
+                                    Log.v(TAG , code);
+                                    Toast.makeText(getApplicationContext(), "上传成功！", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(), jsonObject1.getString("message"), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "上传失败！", Toast.LENGTH_LONG).show();
+                        }
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }

@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 String method = "user/login";
-                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method);
+                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
                 Log.v(TAG , result);
                 try {
                     JSONObject jsonObject1 = new JSONObject(result);
@@ -155,6 +155,9 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putInt("id", data.getInt("id"));
                         editor.putInt("bit", data.getInt("bit"));
                         editor.putString("address", data.getString("address"));
+                        editor.putString("wechatAddress", data.getString("wechatAddress"));
+                        editor.putString("alipayAddress", data.getString("alipayAddress"));
+                        editor.putString("bankCard", data.getString("bankCard"));
                         editor.commit();
                     }
                     else

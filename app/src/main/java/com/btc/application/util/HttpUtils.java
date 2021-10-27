@@ -1,18 +1,12 @@
 package com.btc.application.util;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
-
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,14 +23,14 @@ public class HttpUtils {
     public static String apiUrl = "http://192.168.0.105:8080/btc/";
 //    public static String apiUrl = "http://8.136.237.10:8080/btc/";6
 
-    public static String sendJsonPost(String Json, String method) {
+    public static String sendJsonPost(String Json, String method , String type) {
         String result = "";
         BufferedReader reader = null;
         try {
             String urlPath = apiUrl + method;
             URL url = new URL(urlPath);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+            conn.setRequestMethod(type);
             conn.setConnectTimeout(60000);  //单位毫秒
             conn.setReadTimeout(60000);  //单位毫秒
             conn.setDoOutput(true);

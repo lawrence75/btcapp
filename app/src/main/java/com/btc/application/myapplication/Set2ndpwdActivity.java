@@ -57,7 +57,7 @@ public class Set2ndpwdActivity extends AppCompatActivity {
                 }
 
                 String method = "user/set2ndPwd";
-                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method);
+                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
                 Log.v(TAG , result);
                 try {
                     JSONObject jsonObject1 = new JSONObject(result);
