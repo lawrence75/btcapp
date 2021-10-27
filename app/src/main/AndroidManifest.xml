@@ -41,7 +41,7 @@
             android:label="@string/title_mod_collection_info"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".ModCollectionQRCodeActivity"
+            android:name=".ModWechatCodeActivity"
             android:label="@string/title_mod_bank_account"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity

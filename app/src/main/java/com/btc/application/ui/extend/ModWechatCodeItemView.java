@@ -11,8 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.btc.application.myapplication.ModBankAccountActivity;
-import com.btc.application.myapplication.ModCollectionQRCodeActivity;
+import com.btc.application.myapplication.ModWechatCodeActivity;
 import com.btc.application.myapplication.R;
 
 /**
@@ -45,7 +44,7 @@ public class ModWechatCodeItemView extends RelativeLayout {
         name.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ModCollectionQRCodeActivity.class));
+                context.startActivity(new Intent(context, ModWechatCodeActivity.class));
             }
         });
     }

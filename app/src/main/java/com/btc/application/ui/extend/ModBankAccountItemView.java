@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.btc.application.myapplication.ModBankAccountActivity;
-import com.btc.application.myapplication.ModCollectionQRCodeActivity;
 import com.btc.application.myapplication.R;
 
 /**

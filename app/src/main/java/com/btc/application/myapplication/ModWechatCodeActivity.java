@@ -13,7 +13,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -28,19 +27,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import com.btc.application.util.HttpUtils;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ModCollectionQRCodeActivity extends AppCompatActivity {
+public class ModWechatCodeActivity extends AppCompatActivity {
 
-    String TAG = ModCollectionQRCodeActivity.class.getCanonicalName();
-    private Toolbar toolbar;
     private Uri imageUri;
     private ImageView picture;
     private PopupWindow pop;
@@ -50,7 +45,7 @@ public class ModCollectionQRCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mod_collection_qr_code);
+        setContentView(R.layout.activity_mod_wechat_code);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

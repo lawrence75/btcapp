@@ -26,7 +26,7 @@ import java.util.UUID;
 public class HttpUtils {
 //    public static String apiUrl = "http://10.255.8.44:8080/btc/";
 //    public static String apiUrl = "http://10.168.31.63:8080/btc/";
-    public static String apiUrl = "http://192.168.0.101:8080/btc/";
+    public static String apiUrl = "http://192.168.0.105:8080/btc/";
 //    public static String apiUrl = "http://8.136.237.10:8080/btc/";6
 
     public static String sendJsonPost(String Json, String method) {
@@ -116,14 +116,13 @@ public class HttpUtils {
     private static final String TAG = "uploadFile";
     private static final int TIME_OUT = 10*10000000; //超时时间
     private static final String CHARSET = "utf-8"; //设置编码
-    public static final String SUCCESS="1";
-    public static final String FAILURE="0";
 
     public static String uploadFile(File file) throws IOException {
         String RequestURL = apiUrl + "uploadFilesToFast";
         String BOUNDARY = UUID.randomUUID().toString(); //边界标识 随机生成
         String PREFIX = "--" , LINE_END = "\r\n";
         String CONTENT_TYPE = "multipart/form-data"; //内容类型
+        String output = "";
 
         InputStream is = null;
         OutputStream outputSteam = null;
@@ -151,7 +150,7 @@ public class HttpUtils {
                  * name里面的值为服务器端需要key 只有这个key 才可以得到对应的文件
                  * filename是文件的名字，包含后缀名的 比如:abc.png
                  */
-                sb.append("Content-Disposition: form-data; name=\"img\"; filename=\""+file.getName()+"\""+LINE_END);
+                sb.append("Content-Disposition: form-data; name=\"file\"; filename=\""+file.getName()+"\""+LINE_END);
                 sb.append("Content-Type: application/octet-stream; charset="+CHARSET+LINE_END);
                 sb.append(LINE_END);
                 dos.write(sb.toString().getBytes());
@@ -175,9 +174,17 @@ public class HttpUtils {
                 Log.e(TAG, "response code:"+res);
                 if(res==200)
                 {
-                    Log.i(TAG, conn.getResponseMessage());
-                    Log.i(TAG, conn.getContent().toString());
-                    return SUCCESS;
+                    //将服务器的数据转化返回到客户端
+                    InputStream  in = conn.getInputStream();
+                    int ch;
+                    StringBuilder sb2 = new StringBuilder();
+                    while ((ch = in.read()) != -1)
+                    {
+                    sb2.append((char) ch);
+                    }
+                    Log.d(TAG,"状态码："+res);
+                    output = sb2.toString();
+                    return output;
                 }
             }
         } catch (MalformedURLException e)
@@ -196,7 +203,7 @@ public class HttpUtils {
                 outputSteam.close();
             }
             e.printStackTrace(); }
-        return FAILURE;
+        return output;
     }
 
 }
