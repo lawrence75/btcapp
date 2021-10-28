@@ -44,7 +44,11 @@
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".ModWechatCodeActivity"
-            android:label="@string/title_mod_bank_account"
+            android:label="@string/title_mod_wechat_code"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ModAlipayCodeActivity"
+            android:label="@string/title_mod_alipay_code"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".NoticeActivity"

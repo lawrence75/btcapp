@@ -61,6 +61,7 @@
     <string name="action_withdraw">提币</string>
     <string name="title_address">地址</string>
     <string name="tip_modWechatCode">请上传微信收款码:</string>
+    <string name="tip_modAlipayCode">请上传支付宝收款码:</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
 

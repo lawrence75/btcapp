@@ -37,7 +37,7 @@
             app:show_line="true"
             app:show_more="true" />
 
-        <com.btc.application.ui.extend.SetpwdItemView
+        <com.btc.application.ui.extend.ModAlipayCodeItemView
             android:id="@+id/item_setpwd"
             android:layout_width="match_parent"
             android:layout_height="50dp"
