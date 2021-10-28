@@ -41,6 +41,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 public class ModWechatCodeActivity extends AppCompatActivity {
@@ -183,8 +184,6 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         startActivityForResult(intent,CHOOSE_PHOTO);//打开相册
     }
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -192,51 +191,16 @@ public class ModWechatCodeActivity extends AppCompatActivity {
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(getWindow().getContext().getContentResolver().openInputStream(imageUri));
+                        InputStream is = getWindow().getContext().getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        is.close();
                         picture.setImageBitmap(bitmap);
                         //保存图片
-                        String path = "/storage/emulated/0/Android/data/com.btc.application/cache/";
-                        String retStr = HttpUtils.uploadFile(saveImage(bitmap,path));
-
-                        JSONObject json = new JSONObject(retStr);
-
-                        String retCode = json.getString("code");
-
-                        if (null != retCode && "000000".equals(retCode))
-                        {
-                            JSONObject jsonObject = new JSONObject();
-                            jsonObject.put("id", id);
-                            jsonObject.put("wechatAddress", json.getJSONObject("data").getString("path"));
-
-                            String method = "user/insertOrUpdate";
-                            String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "PUT");
-                            Log.v(TAG , result);
-                            try {
-                                JSONObject jsonObject1 = new JSONObject(result);
-                                String code = jsonObject1.getString("code");
-                                if ("000000".equals(code))
-                                {
-                                    Log.v(TAG , code);
-                                    Toast.makeText(getApplicationContext(), "上传成功！", Toast.LENGTH_LONG).show();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getApplicationContext(), jsonObject1.getString("message"), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), "上传失败！", Toast.LENGTH_LONG).show();
-                        }
+                        uploadImage(bitmap);
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -262,24 +226,8 @@ public class ModWechatCodeActivity extends AppCompatActivity {
     private void handleImageOnKiKai(Intent data) {
         String imagePath = null;
         Uri uri = data.getData();
-        if(DocumentsContract.isDocumentUri(getWindow().getContext(), uri)) {
-            //如果是Document类型的Uri，则通过document id 处理
-            String docId = DocumentsContract.getDocumentId(uri);
-            if("com.android.providers.media.documents".equals(uri.getAuthority())) {
-                String id = docId.split(":")[1];
-                String selection = MediaStore.Images.Media._ID + "=" + id;
-                imagePath = getImagePath(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
-            }else if("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                Uri contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
-                imagePath = getImagePath(contentUri, null);
-            }else if("content".equalsIgnoreCase(uri.getScheme())) {
-                //不是document类型的Uri，普通方法处理
-                imagePath = getImagePath(uri, null);
-            }
-            displayImage(imagePath);
-        }
+        imagePath = getImagePath(uri, null);
+        displayImage(imagePath);
     }
 
     //<19的操作
@@ -308,6 +256,8 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         if(path != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             picture.setImageBitmap(bitmap);
+
+            uploadImage(bitmap);
         }else {
             Toast.makeText(getWindow().getContext(), "Load Failed", Toast.LENGTH_LONG).show();
         }
@@ -340,5 +290,55 @@ public class ModWechatCodeActivity extends AppCompatActivity {
 // 关闭此输出流并释放与此流有关的所有系统资源
         bos.close();
         return filePath;
+    }
+
+    private void uploadImage(Bitmap bitmap)
+    {
+        String retStr = null;
+        try {
+            retStr = HttpUtils.uploadFile(saveImage(bitmap,Constant.CACHE_FILE_PATH));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject json = null;
+        String retCode = null;
+        try {
+            json = new JSONObject(retStr);
+            retCode = json.getString("code");
+
+
+            if (null != retCode && "000000".equals(retCode))
+            {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", id);
+                jsonObject.put("wechatAddress", json.getJSONObject("data").getString("path"));
+
+                String method = "user/insertOrUpdate";
+                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "PUT");
+                Log.v(TAG , result);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(result);
+                    String code = jsonObject1.getString("code");
+                    if ("000000".equals(code))
+                    {
+                        Log.v(TAG , code);
+                        Toast.makeText(getApplicationContext(), "上传成功！", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), jsonObject1.getString("message"), Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "上传失败！", Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
