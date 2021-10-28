@@ -39,7 +39,7 @@
             android:label="@string/title_activity_pc"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".ModBankAccountActivity"
+            android:name=".ModCollectionAccountActivity"
             android:label="@string/title_mod_collection_info"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
@@ -49,6 +49,10 @@
         <activity
             android:name=".ModAlipayCodeActivity"
             android:label="@string/title_mod_alipay_code"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ModBankAccountActivity"
+            android:label="@string/title_mod_bank_account"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".NoticeActivity"

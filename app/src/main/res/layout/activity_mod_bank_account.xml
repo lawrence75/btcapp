@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".ModBankAccountActivity">
+    tools:context=".ModAlipayCodeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,46 +21,34 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:singleLine="false"
+        android:text="@string/tip_modBankCard"
+        android:textColor="#ffffff"
+        android:textColorHint="@color/white"
+        android:textSize="16sp"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.btc.application.ui.extend.ModWechatCodeItemView
-            android:id="@+id/item_modpwd"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#fff"
-            android:layout_marginTop="70dp"
-            app:icon="@drawable/modpwd"
-            app:name="@string/title_mod_wechat_code"
-            app:show_line="true"
-            app:show_more="true" />
-
-        <com.btc.application.ui.extend.ModAlipayCodeItemView
-            android:id="@+id/item_setpwd"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/item_modpwd"
-            android:layout_centerHorizontal="true"
-            android:background="#fff"
-            android:layout_marginTop="10dp"
-            app:icon="@drawable/setpwd"
-            app:name="@string/title_mod_alipay_code"
-            app:show_line="true"
-            app:show_more="true" />
-
-        <com.btc.application.ui.extend.ModBankAccountItemView
-            android:id="@+id/item_modQRCode"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="190dp"
-            android:background="#fff"
-            app:icon="@drawable/icon_modheadphoto"
-            app:name="@string/title_mod_bank_account"
-            app:show_line="true"
-            app:show_more="true" />
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/more"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

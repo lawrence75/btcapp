@@ -11,16 +11,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.btc.application.myapplication.ModBankAccountActivity;
+import com.btc.application.myapplication.ModCollectionAccountActivity;
 import com.btc.application.myapplication.R;
 
 /**
  * 自定义个人中心选项控件
  */
-public class ModBankAccountItemView extends RelativeLayout {
+public class ModCollectionAccountItemView extends RelativeLayout {
     private TextView data;
 
-    public ModBankAccountItemView(final Context context, AttributeSet attrs){
+    public ModCollectionAccountItemView(final Context context, AttributeSet attrs){
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.item_personal_menu, this);
         @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PersonaltemView);
@@ -44,7 +44,7 @@ public class ModBankAccountItemView extends RelativeLayout {
         name.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ModBankAccountActivity.class));
+                context.startActivity(new Intent(context, ModCollectionAccountActivity.class));
             }
         });
     }

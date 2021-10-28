@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <!--<com.btc.application.ui.extend.ModBankAccountItemView
+        <!--<com.btc.application.ui.extend.ModCollectionAccountItemView
             android:id="@+id/item_modpwd"
             android:layout_width="match_parent"
             android:layout_height="50dp"
