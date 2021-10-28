@@ -307,7 +307,6 @@ public class ModWechatCodeActivity extends AppCompatActivity {
             json = new JSONObject(retStr);
             retCode = json.getString("code");
 
-
             if (null != retCode && "000000".equals(retCode))
             {
                 JSONObject jsonObject = new JSONObject();

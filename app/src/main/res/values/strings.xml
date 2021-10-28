@@ -60,7 +60,7 @@
     <string name="action_recharge">充币</string>
     <string name="action_withdraw">提币</string>
     <string name="title_address">地址</string>
-    <string name="tip_modCollectionQRCode">请至少上传一项收款码:</string>
+    <string name="tip_modWechatCode">请上传微信收款码:</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
 
