@@ -17,13 +17,14 @@ public class FileUtils {
             URL iconUrl = new URL(url);
             URLConnection conn = iconUrl.openConnection();
             HttpURLConnection http = (HttpURLConnection) conn;
-            int length = http.getContentLength();
+//            int length = http.getContentLength();
+            conn.setDoInput(true);
             conn.connect();
             // 获得图像的字符流
             InputStream is = conn.getInputStream();
-            BufferedInputStream bis = new BufferedInputStream(is, length);
-            bm = BitmapFactory.decodeStream(bis);
-            bis.close();
+//            BufferedInputStream bis = new BufferedInputStream(is, length);
+            bm = BitmapFactory.decodeStream(is);
+//            bis.close();
             is.close();
         } catch (Exception e) {
             e.printStackTrace();

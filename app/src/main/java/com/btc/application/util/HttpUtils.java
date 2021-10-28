@@ -20,7 +20,7 @@ import java.util.UUID;
 public class HttpUtils {
 //    public static String apiUrl = "http://10.255.8.44:8080/btc/";
 //    public static String apiUrl = "http://10.168.31.63:8080/btc/";
-    public static String apiUrl = "http://192.168.0.105:8080/btc/";
+    public static String apiUrl = "http://192.168.0.103/btc/";
 //    public static String apiUrl = "http://8.136.237.10:8080/btc/";6
 
     public static String sendJsonPost(String Json, String method , String type) {

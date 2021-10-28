@@ -41,6 +41,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 public class ModWechatCodeActivity extends AppCompatActivity {
 
@@ -60,12 +61,20 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        picture = findViewById(R.id.icon);
+
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectNetwork()
+                .detectDiskReads()
+                .detectDiskWrites()
+                .detectAll()   // or .detectAll() for all detectable problems //.detectNetwork()
                 .penaltyLog()
                 .build());
-
-        picture = findViewById(R.id.icon);
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build());
 
         // 获取SharedPreference
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
@@ -73,7 +82,7 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         id = preference.getInt("id", 0);
         wechatAddress = preference.getString("wechatAddress", "");
 
-        if (null != wechatAddress && !"".equals(wechatAddress))
+        if (null != wechatAddress && !"".equals(wechatAddress) && !"null".equals(wechatAddress))
         {
             Bitmap bitmap = FileUtils.url2bitmap(Constant.FILE_URL + wechatAddress);
             picture.setImageBitmap(bitmap);
@@ -128,7 +137,7 @@ public class ModWechatCodeActivity extends AppCompatActivity {
                         break;
                     case R.id.tv_camera:
                         //拍照
-                        File outputImage = new File(getWindow().getContext().getExternalCacheDir(),"output_image.jpg");
+                        File outputImage = new File(getWindow().getContext().getExternalCacheDir(), UUID.randomUUID().toString() + ".jpg");
                         try{
                             if(outputImage.exists())
                                 outputImage.delete();
