@@ -85,7 +85,7 @@ public class ModWechatCodeActivity extends AppCompatActivity {
 
         if (null != wechatAddress && !"".equals(wechatAddress) && !"null".equals(wechatAddress))
         {
-            Bitmap bitmap = FileUtils.url2bitmap(Constant.FILE_URL + wechatAddress);
+            Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + wechatAddress);
             picture.setImageBitmap(bitmap);
         }
 

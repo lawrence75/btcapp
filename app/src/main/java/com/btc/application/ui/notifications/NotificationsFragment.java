@@ -144,7 +144,7 @@ public class NotificationsFragment extends Fragment {
     {
 
         String method = "user/getUserBlocks/";
-        String result = HttpUtils.getJsonByInternet(HttpUtils.apiUrl+method+id);
+        String result = HttpUtils.getJsonByInternet(method+id);
         Log.d("debugTest",result);
         gcmView.setText(bit+"");
         cnyView.setText(bit+"");
@@ -200,7 +200,7 @@ public class NotificationsFragment extends Fragment {
         }
 
         method = "user/getUser/";
-        result = HttpUtils.getJsonByInternet(HttpUtils.apiUrl+method+id);
+        result = HttpUtils.getJsonByInternet(method+id);
         Log.d("debugTest",result);
 
         try {

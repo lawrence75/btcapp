@@ -86,7 +86,7 @@ public class ModBankAccountActivity extends AppCompatActivity {
 
         if (null != bankCard && !"".equals(bankCard) && !"null".equals(bankCard))
         {
-            Bitmap bitmap = FileUtils.url2bitmap(Constant.FILE_URL + bankCard);
+            Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + bankCard);
             picture.setImageBitmap(bitmap);
         }
 

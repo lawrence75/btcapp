@@ -86,7 +86,7 @@ public class ModAlipayCodeActivity extends AppCompatActivity {
 
         if (null != alipayAddress && !"".equals(alipayAddress) && !"null".equals(alipayAddress))
         {
-            Bitmap bitmap = FileUtils.url2bitmap(Constant.FILE_URL + alipayAddress);
+            Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + alipayAddress);
             picture.setImageBitmap(bitmap);
         }
 

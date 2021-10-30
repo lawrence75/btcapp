@@ -18,16 +18,12 @@ import java.net.URL;
 import java.util.UUID;
 
 public class HttpUtils {
-//    public static String apiUrl = "http://10.255.8.44:8080/btc/";
-//    public static String apiUrl = "http://10.168.31.63:8080/btc/";
-    public static String apiUrl = "http://192.168.0.103/btc/";
-//    public static String apiUrl = "http://8.136.237.10:8080/btc/";6
 
     public static String sendJsonPost(String Json, String method , String type) {
         String result = "";
         BufferedReader reader = null;
         try {
-            String urlPath = apiUrl + method;
+            String urlPath = Constant.APP_URL + Constant.APP_NAME + method;
             URL url = new URL(urlPath);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(type);
@@ -78,13 +74,12 @@ public class HttpUtils {
 
     /**
      * 从网络获取json数据,(String byte[})
-
      * @param path
      * @return
      */
     public static String getJsonByInternet(String path){
         try {
-            URL url = new URL(path.trim());
+            URL url = new URL(Constant.APP_URL + Constant.APP_NAME + path.trim());
             //打开连接
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -112,7 +107,7 @@ public class HttpUtils {
     private static final String CHARSET = "utf-8"; //设置编码
 
     public static String uploadFile(File file) throws IOException {
-        String RequestURL = apiUrl + "uploadFilesToFast";
+        String RequestURL = Constant.APP_URL + Constant.APP_NAME + "uploadFilesToFast";
         String BOUNDARY = UUID.randomUUID().toString(); //边界标识 随机生成
         String PREFIX = "--" , LINE_END = "\r\n";
         String CONTENT_TYPE = "multipart/form-data"; //内容类型

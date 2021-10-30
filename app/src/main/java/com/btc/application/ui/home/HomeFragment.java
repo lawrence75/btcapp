@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
 
                                 String method = "user/openBlock/";
-                                String result = HttpUtils.getJsonByInternet(HttpUtils.apiUrl + method + id);
+                                String result = HttpUtils.getJsonByInternet(method + id);
                                 Log.v(TAG, result);
                                 try {
                                     JSONObject jsonObject1 = new JSONObject(result);
