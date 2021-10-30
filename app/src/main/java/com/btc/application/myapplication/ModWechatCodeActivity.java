@@ -104,8 +104,8 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         TextView mCamera = bottomView.findViewById(R.id.tv_camera);
         TextView mCancel = bottomView.findViewById(R.id.tv_cancel);
 
-        pop = new PopupWindow(bottomView, 200, 500);
-        pop.setBackgroundDrawable(new ColorDrawable(Color.GREEN));
+        pop = new PopupWindow(bottomView, -1, -2);
+        pop.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         pop.setOutsideTouchable(true);
         pop.setFocusable(true);
         WindowManager.LayoutParams lp = getWindow().getAttributes();
