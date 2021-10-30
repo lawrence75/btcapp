@@ -82,7 +82,22 @@ public class ModBankAccountActivity extends AppCompatActivity {
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
         id = preference.getInt("id", 0);
-        bankCard = preference.getString("bankCard", "");
+
+        String method = "user/getUser/";
+        String result = HttpUtils.getJsonByInternet(method+id);
+        Log.d("debugTest",result);
+
+        try {
+            JSONObject jsonObject1 = new JSONObject(result);
+            String code = jsonObject1.getString("code");
+            if ("000000".equals(code))
+            {
+                JSONObject data = jsonObject1.getJSONObject("data");
+                bankCard = data.getString("bankCard");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (null != bankCard && !"".equals(bankCard) && !"null".equals(bankCard))
         {

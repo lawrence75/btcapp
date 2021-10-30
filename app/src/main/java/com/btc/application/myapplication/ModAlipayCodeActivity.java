@@ -82,7 +82,22 @@ public class ModAlipayCodeActivity extends AppCompatActivity {
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
         id = preference.getInt("id", 0);
-        alipayAddress = preference.getString("alipayAddress", "");
+
+        String method = "user/getUser/";
+        String result = HttpUtils.getJsonByInternet(method+id);
+        Log.d("debugTest",result);
+
+        try {
+            JSONObject jsonObject1 = new JSONObject(result);
+            String code = jsonObject1.getString("code");
+            if ("000000".equals(code))
+            {
+                JSONObject data = jsonObject1.getJSONObject("data");
+                alipayAddress = data.getString("alipayAddress");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (null != alipayAddress && !"".equals(alipayAddress) && !"null".equals(alipayAddress))
         {

@@ -81,7 +81,22 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
         id = preference.getInt("id", 0);
-        wechatAddress = preference.getString("wechatAddress", "");
+
+        String method = "user/getUser/";
+        String result = HttpUtils.getJsonByInternet(method+id);
+        Log.d("debugTest",result);
+
+        try {
+            JSONObject jsonObject1 = new JSONObject(result);
+            String code = jsonObject1.getString("code");
+            if ("000000".equals(code))
+            {
+                JSONObject data = jsonObject1.getJSONObject("data");
+                wechatAddress = data.getString("wechatAddress");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (null != wechatAddress && !"".equals(wechatAddress) && !"null".equals(wechatAddress))
         {

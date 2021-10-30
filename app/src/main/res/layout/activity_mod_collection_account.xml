@@ -32,7 +32,7 @@
             android:layout_height="50dp"
             android:background="#fff"
             android:layout_marginTop="70dp"
-            app:icon="@drawable/modpwd"
+            app:icon="@drawable/wechat"
             app:name="@string/title_mod_wechat_code"
             app:show_line="true"
             app:show_more="true" />
@@ -45,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:background="#fff"
             android:layout_marginTop="10dp"
-            app:icon="@drawable/setpwd"
+            app:icon="@drawable/alipay_logo"
             app:name="@string/title_mod_alipay_code"
             app:show_line="true"
             app:show_more="true" />
@@ -56,7 +56,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="190dp"
             android:background="#fff"
-            app:icon="@drawable/icon_modheadphoto"
+            app:icon="@drawable/bank_card"
             app:name="@string/title_mod_bank_account"
             app:show_line="true"
             app:show_more="true" />
