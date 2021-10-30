@@ -13,7 +13,5 @@ public class PcActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pc);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 }

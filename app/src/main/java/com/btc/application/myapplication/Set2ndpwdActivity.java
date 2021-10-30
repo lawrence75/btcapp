@@ -31,15 +31,6 @@ public class Set2ndpwdActivity extends AppCompatActivity {
         final TextView confirmpwdView = findViewById(R.id.confirmpwd);
         final Button setpwdBtn = findViewById(R.id.setpwd);
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         setpwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

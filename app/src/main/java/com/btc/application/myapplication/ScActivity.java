@@ -12,6 +12,5 @@ public class ScActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sc);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 }
