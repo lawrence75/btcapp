@@ -1,34 +1,40 @@
 package com.btc.application.ui.dashboard;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.annotation.NonNull;
+import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import androidx.fragment.app.FragmentTabHost;
 import com.btc.application.myapplication.R;
 
-public class DashboardFragment extends Fragment {
+    public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+        private FragmentTabHost tabHost;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-//        final TextView textView = root.findViewById(R.id.text_dashboard);
-        /*dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view  = inflater.inflate(R.layout.fragment_dashboard, null);
+            tabHost = (FragmentTabHost) view.findViewById(android.R.id.tabhost);
+            tabHost.setup(getActivity(),getChildFragmentManager(), android.R.id.tabcontent);
+            tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖", null), SellFragment
+                    .class, null);
+            tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买", null), BuyFragment
+                            .class,
+                    null);
+            //逐个按钮添加特效
+            for(int i=0;i<tabHost.getChildCount();i++){
+                //换字体颜色
+                TextView tv = (TextView)
+                        tabHost.getChildAt(i).findViewById(android.R.id.title);
+                tv.setTextColor(Color.rgb(255, 255, 255));
             }
-        });*/
-
-        return root;
+            tabHost.setCurrentTab(0);
+            return view;
+        }
     }
-}
