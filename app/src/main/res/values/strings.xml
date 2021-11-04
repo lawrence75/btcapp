@@ -66,8 +66,8 @@
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment">我要卖</string>
+    <string name="hello_second_fragment">我要买</string>
     <string name="title_activity_sc">安全中心</string>
     <string name="title_activity_pc">个人设置</string>
 </resources>

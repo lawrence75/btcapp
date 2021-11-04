@@ -1,6 +1,7 @@
 package com.btc.application.ui.dashboard;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,9 @@ public class SellFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 //        extendsViewModel = new ViewModelProvider(this).get(ExtendsViewModel.class);
 //        View root = inflater.inflate(R.layout.fragment_extends, container, false);
-
+        View root = inflater.inflate(R.layout.fragment_sell, container, false);
+        final Button buttonFirst = root.findViewById(R.id.button_first);
+        buttonFirst.setTextColor(Color.rgb(255, 255, 255));
 
         return null;
     }
