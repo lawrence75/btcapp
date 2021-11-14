@@ -31,8 +31,7 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, null);
         tabHost = view.findViewById(android.R.id.tabhost);
         //获取导航按钮控件
-//        tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
-
+        //tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
 
         //要切换显示的所有Fragment
         List<Class> list = new ArrayList<Class>();
@@ -56,7 +55,7 @@ public class DashboardFragment extends Fragment {
             //建立选项卡和Fragment的对应关系，
             //当点击该选项卡时在FrameLayout中
             //显示list中第i个Fragment
-//            tabHost.addTab(tab, list.get(i), null);
+//          tabHost.addTab(tab, list.get(i), null);
             tabHost.addTab(tabHost.newTabSpec(tagLables.get(i)).setIndicator(tags.get(i), null), list.get(i), null);
             //其它设置 选项卡之间没有分割线
             tabHost.getTabWidget().setDividerDrawable(null);
@@ -65,8 +64,7 @@ public class DashboardFragment extends Fragment {
         /*tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖", null), SellFragment
                 .class, null);
         tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买", null), BuyFragment
-                        .class,
-                null);
+                        .class,null);
         //逐个按钮添加特效
         for (int i = 0; i < tabHost.getChildCount(); i++) {
             //换字体颜色
