@@ -31,6 +31,6 @@ public class SellFragment extends Fragment {
         final Button buttonFirst = root.findViewById(R.id.button_first);
         buttonFirst.setTextColor(Color.rgb(0, 0, 0));
 
-        return null;
+        return root;
     }
 }

@@ -48,7 +48,7 @@ public class DashboardFragment extends Fragment {
         tabHost.setup(getActivity(),
                 getChildFragmentManager(),
                 android.R.id.tabcontent);
-        for (int i = 0; i < tagLables.size(); i++) {
+        /*for (int i = 0; i < tagLables.size(); i++) {
             //获得第i个选项卡的View
             //创建第i个选项卡，该选项卡的标识为tags.get(i)，
             //该选项卡的样式为view
@@ -59,13 +59,17 @@ public class DashboardFragment extends Fragment {
             tabHost.addTab(tabHost.newTabSpec(tagLables.get(i)).setIndicator(tags.get(i), null), list.get(i), null);
             //其它设置 选项卡之间没有分割线
             tabHost.getTabWidget().setDividerDrawable(null);
-        }
+        }*/
 
-        /*tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖", null), SellFragment
+        tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖", null), SellFragment
                 .class, null);
         tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买", null), BuyFragment
                         .class,null);
-        //逐个按钮添加特效
+
+        /*tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖").setContent(R.id.fragment_sell));
+        tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买").setContent(R.id.fragment_buy));*/
+
+        /*//逐个按钮添加特效
         for (int i = 0; i < tabHost.getChildCount(); i++) {
             //换字体颜色
             TextView tv = tabHost.getChildAt(i).findViewById(android.R.id.title);
@@ -75,4 +79,9 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        tabHost = null;
+    }
 }

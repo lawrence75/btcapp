@@ -23,6 +23,6 @@ public class BuyFragment extends Fragment {
         buttonFirst.setTextColor(Color.rgb(0, 0, 0));
 
 
-        return null;
+        return root;
     }
 }

@@ -28,9 +28,18 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_height="500dp"
+            android:layout_weight="1">
+            <RelativeLayout android:name="com.btc.application.ui.dashboard.SellFragment"
+                android:id="@+id/fragment_sell"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"/>
 
+            <RelativeLayout android:name="com.btc.application.ui.dashboard.BuyFragment"
+                android:id="@+id/fragment_buy"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
 
 
 
