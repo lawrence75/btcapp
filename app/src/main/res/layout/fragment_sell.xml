@@ -17,20 +17,127 @@
             android:src="@drawable/transaction_background"
             tools:ignore="MissingConstraints" />
 
+        <ImageView
+            android:id="@+id/increase_background"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:src="@drawable/increase_background"
+            tools:ignore="MissingConstraints" />
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/title_float_ratio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_current_price"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="300dp"
+            android:text="@string/title_float_ratio"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="30dp"
             android:textColorHint="@color/white"
             android:textColor="#ffffff"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/float_ratio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14.28%"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="50dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_current_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_current_price"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="35dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/current_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.16"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="55dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_current_average_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_current_average_price"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="105dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/current_average_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.15"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="125dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_current_high_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_current_high_price"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="105dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/current_high_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.17"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="125dp"
+            android:textColorHint="@color/white"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </FrameLayout>
 
 

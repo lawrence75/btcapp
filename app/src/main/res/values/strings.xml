@@ -24,7 +24,10 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">首页</string>
     <string name="title_block">区块</string>
-    <string name="title_current_price">当前价格</string>
+    <string name="title_current_price">当前价格(GCM/CNY)</string>
+    <string name="title_current_average_price">今日均价(GCM/CNY)</string>
+    <string name="title_current_high_price">今日最高(GCM/CNY)</string>
+    <string name="title_float_ratio">浮动比例</string>
     <string name="title_dashboard">生态</string>
     <string name="title_notifications">资产</string>
     <string name="title_extends">我的</string>
