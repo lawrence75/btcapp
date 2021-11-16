@@ -28,8 +28,8 @@ public class SellFragment extends Fragment {
 //        extendsViewModel = new ViewModelProvider(this).get(ExtendsViewModel.class);
 //        View root = inflater.inflate(R.layout.fragment_extends, container, false);
         View root = inflater.inflate(R.layout.fragment_sell, container, false);
-        final Button buttonFirst = root.findViewById(R.id.button_first);
-        buttonFirst.setTextColor(Color.rgb(0, 0, 0));
+        /*final Button buttonFirst = root.findViewById(R.id.button_first);
+        buttonFirst.setTextColor(Color.rgb(0, 0, 0));*/
 
         return root;
     }

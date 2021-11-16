@@ -24,6 +24,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">首页</string>
     <string name="title_block">区块</string>
+    <string name="title_current_price">当前价格</string>
     <string name="title_dashboard">生态</string>
     <string name="title_notifications">资产</string>
     <string name="title_extends">我的</string>
