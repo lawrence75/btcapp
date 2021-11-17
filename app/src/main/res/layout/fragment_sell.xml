@@ -142,11 +142,19 @@
 
     <!-- ListView控件 -->
     <ListView
+        android:id="@+id/lv_expense"
+        android:layout_marginTop="184dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:ignore="MissingConstraints">
+
+    </ListView>
+    <!--<ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listView"
         android:layout_marginStart="30dp"
         android:layout_marginTop="200dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

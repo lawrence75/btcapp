@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SellFragment extends Fragment {
 
@@ -69,7 +70,7 @@ public class SellFragment extends Fragment {
         }
 
 
-        ListView listView = (ListView) root.findViewById(R.id.listView);
+        /*ListView listView = (ListView) root.findViewById(R.id.listView);
 
         //获取到集合数据
         //名字列表，之后可以动态加入数据即可，这里只是数据例子
@@ -94,6 +95,35 @@ public class SellFragment extends Fragment {
         SimpleAdapter adapter = new SimpleAdapter(root.getContext(), data, R.layout.item,
                 new String[]{"name", "sex"}, new int[]{R.id.name, R.id.sex});
         //实现列表的显示
+        listView.setAdapter(adapter);*/
+
+        List<Map<String, Object>> listitem = new ArrayList<Map<String, Object>>(); //存储数据的数组列表
+//写死的数据，用于测试
+        int[] image_expense = new int[]{R.drawable.wechat, R.drawable.alipay_logo }; //存储图片
+        String[] expense_category = new String[] {"发工资", "买衣服"};
+        String[] expense_money = new String[] {"30000.00", "1500.00"};
+        for (int i = 0; i < image_expense.length; i++)
+        {
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("image_expense", image_expense[i]);
+            map.put("expense_category", expense_category[i]);
+            map.put("expense_money", expense_money[i]);
+            listitem.add(map);
+        }
+
+//创建适配器
+// 第一个参数是上下文对象
+// 第二个是listitem
+// 第三个是指定每个列表项的布局文件
+// 第四个是指定Map对象中定义的两个键（这里通过字符串数组来指定）
+// 第五个是用于指定在布局文件中定义的id（也是用数组来指定）
+        SimpleAdapter adapter = new SimpleAdapter(getActivity()
+                , listitem
+                , R.layout.item
+                , new String[]{"expense_category", "expense_money", "image_expense"}
+                , new int[]{R.id.tv_expense_category, R.id.tv_expense_money, R.id.image_expense});
+
+        ListView listView = (ListView) root.findViewById(R.id.lv_expense);
         listView.setAdapter(adapter);
 
         return root;
