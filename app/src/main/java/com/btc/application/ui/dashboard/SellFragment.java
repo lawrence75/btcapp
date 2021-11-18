@@ -99,15 +99,39 @@ public class SellFragment extends Fragment {
 
         List<Map<String, Object>> listitem = new ArrayList<Map<String, Object>>(); //存储数据的数组列表
 //写死的数据，用于测试
-        int[] image_expense = new int[]{R.drawable.wechat, R.drawable.alipay_logo }; //存储图片
-        String[] expense_category = new String[] {"发工资", "买衣服"};
-        String[] expense_money = new String[] {"30000.00", "1500.00"};
-        for (int i = 0; i < image_expense.length; i++)
+        int[] item1 = new int[]{R.drawable.wechat
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo
+                , R.drawable.alipay_logo}; //存储图片
+        String[] item2 = new String[] {"发工资1", "买衣服2" ,"发工资3", "买衣服4","发工资5",
+                "买衣服6","发工资7", "买衣服8"};
+        String[] item3 = new String[] {"1.00", "2.00","3.00", "4.00",
+                "5.00", "6.00","7.00", "8.00"};
+        String[] item4 = new String[] {"aaa1", "aaa2.00","aaa3.00", "a4.00",
+                "a5.00", "a6.00","a7.00", "a8.00"};
+        String[] item5 = new String[] {"b1.00", "b2.00","b3.00", "b4.00",
+                "b5.00", "b6.00","b7.00", "b8.00"};
+        String[] item6 = new String[] {"c1.00", "c2.00","c3.00", "c4.00",
+                "c5.00", "c6.00","c7.00", "c8.00"};
+        String[] item7 = new String[] {"d1.00", "d2.00","d3.00", "d4.00",
+                "d5.00", "d6.00","d7.00", "d8.00"};
+        String[] item8 = new String[] {"e1.00", "e2.00","e3.00", "e4.00",
+                "e5.00", "e6.00","e7.00", "e8.00"};
+        for (int i = 0; i < item1.length; i++)
         {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("image_expense", image_expense[i]);
-            map.put("expense_category", expense_category[i]);
-            map.put("expense_money", expense_money[i]);
+            map.put("item1", item1[i]);
+            map.put("item2", item2[i]);
+            map.put("item3", item3[i]);
+            map.put("item4", item4[i]);
+            map.put("item5", item5[i]);
+            map.put("item6", item6[i]);
+            map.put("item7", item7[i]);
+            map.put("item8", item8[i]);
             listitem.add(map);
         }
 
@@ -120,8 +144,10 @@ public class SellFragment extends Fragment {
         SimpleAdapter adapter = new SimpleAdapter(getActivity()
                 , listitem
                 , R.layout.item
-                , new String[]{"expense_category", "expense_money", "image_expense"}
-                , new int[]{R.id.tv_expense_category, R.id.tv_expense_money, R.id.image_expense});
+                , new String[]{"item1", "item2", "item3", "item4"
+                , "item5", "item6", "item7", "item8"}
+                , new int[]{R.id.the_first_number, R.id.the_option, R.id.the_second_number
+                , R.id.the_equal, R.id.surplus, R.id.root, R.id.clear, R.id.delete});
 
         ListView listView = (ListView) root.findViewById(R.id.lv_expense);
         listView.setAdapter(adapter);

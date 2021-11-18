@@ -1,28 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--item -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <ImageView
-        android:id="@+id/image_expense"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="72dp"
-        android:maxHeight="72dp"/>
-    <TextView
-        android:id="@+id/tv_expense_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/the_first_number"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/the_option"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/the_second_number"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/the_equal"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <!--<View
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:background="#000000" />-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
-        android:padding="10dp"/>
-    <TextView
-        android:id="@+id/tv_expense_money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"/>
+        android:textSize="12dp">
+
+        <TextView
+            android:id="@+id/surplus"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:textColor="@color/black"
+            android:text="%" />
+
+        <TextView
+            android:id="@+id/root"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:text="√"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/clear"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:text="C"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:text="DEL"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
 </LinearLayout>
