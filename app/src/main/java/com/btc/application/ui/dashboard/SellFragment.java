@@ -37,32 +37,6 @@ public class SellFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sell, container, false);
-        /*ListView listView = (ListView) root.findViewById(R.id.listView);
-
-        //获取到集合数据
-        //名字列表，之后可以动态加入数据即可，这里只是数据例子
-        list = new ArrayList<>();
-        list.add("小明");
-        list.add("李华");
-        list.add("张三");
-
-        list1 = new ArrayList<>();
-        list1.add("男");
-        list1.add("男");
-        list1.add("女");
-
-        List<HashMap<String, Object>> data = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < list .size(); i++){
-            HashMap<String, Object> item = new HashMap<String, Object>();
-            item.put("name", list.get(i));
-            item.put("sex", list1.get(i));
-            data.add(item);
-        }
-        //创建SimpleAdapter适配器将数据绑定到item显示控件上
-        SimpleAdapter adapter = new SimpleAdapter(root.getContext(), data, R.layout.item,
-                new String[]{"name", "sex"}, new int[]{R.id.name, R.id.sex});
-        //实现列表的显示
-        listView.setAdapter(adapter);*/
 
         List<Map<String, Object>> listitem = new ArrayList<Map<String, Object>>(); //存储数据的数组列表
 //写死的数据，用于测试
@@ -116,7 +90,7 @@ public class SellFragment extends Fragment {
                 , new int[]{R.id.the_first_number, R.id.the_option, R.id.the_second_number
                 , R.id.the_equal, R.id.surplus, R.id.root, R.id.clear, R.id.delete});
 
-        ListView listView = (ListView) root.findViewById(R.id.lv_expense);
+        ListView listView = root.findViewById(R.id.lv_expense);
         listView.setAdapter(adapter);
 
         return root;
