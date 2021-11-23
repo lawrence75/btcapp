@@ -34,42 +34,9 @@ import java.util.Map;
 
 public class SellFragment extends Fragment {
 
-    private TextView floatRatio;
-    private TextView currentRrice;
-    private TextView currentAveragePrice;
-    private TextView currentHighPrice;
-
-    List<String> list;
-    List<String> list1;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_sell, container, false);
-        floatRatio = root.findViewById(R.id.float_ratio);
-        currentRrice = root.findViewById(R.id.current_price);
-        currentAveragePrice = root.findViewById(R.id.current_average_price);
-        currentHighPrice = root.findViewById(R.id.current_high_price);
-
-        String method = "user/getConstant/";
-        String result = HttpUtils.getJsonByInternet(method);
-        Log.d("debugTest",result);
-
-        try {
-            JSONObject jsonObject1 = new JSONObject(result);
-            String code = jsonObject1.getString("code");
-            if ("000000".equals(code))
-            {
-                JSONObject data = jsonObject1.getJSONObject("data");
-                floatRatio.setText(data.getString("floatRatio") + "%");
-                currentRrice.setText(data.getString("currentRrice") );
-                currentAveragePrice.setText(data.getString("currentAveragePrice") );
-                currentHighPrice.setText(data.getString("currentHighPrice") );
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
         /*ListView listView = (ListView) root.findViewById(R.id.listView);
 
         //获取到集合数据

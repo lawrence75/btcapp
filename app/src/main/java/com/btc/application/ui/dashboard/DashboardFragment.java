@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTabHost;
 import com.btc.application.myapplication.R;
 import com.btc.application.ui.login.LoginActivity;
+import com.btc.application.util.HttpUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,59 +27,55 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private FragmentTabHost tabHost;
-    String TAG = DashboardFragment.class.getCanonicalName();
+    private TextView floatRatio;
+    private TextView currentRrice;
+    private TextView currentAveragePrice;
+    private TextView currentHighPrice;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard, null);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container,false);
         tabHost = view.findViewById(android.R.id.tabhost);
-        //获取导航按钮控件
-        //tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
 
         //要切换显示的所有Fragment
         List<Class> list = new ArrayList<Class>();
         list.add(SellFragment.class);
         list.add(BuyFragment.class);
         //选项卡的标识
-        List<String> tagLables = Arrays.asList(
-                "sell", "buy");
-        List<String> tags = Arrays.asList(
-                "我要卖", "我要买");
-        //选项卡使用View，layouts是这些3个选项卡样式各自的布局文件
-        //设置Fragment将在哪里显示（
-        //在id为tabcontent的FrameLayout中显示）
         tabHost.setup(getActivity(),
                 getChildFragmentManager(),
                 android.R.id.tabcontent);
-        /*for (int i = 0; i < tagLables.size(); i++) {
-            //获得第i个选项卡的View
-            //创建第i个选项卡，该选项卡的标识为tags.get(i)，
-            //该选项卡的样式为view
-            //建立选项卡和Fragment的对应关系，
-            //当点击该选项卡时在FrameLayout中
-            //显示list中第i个Fragment
-//          tabHost.addTab(tab, list.get(i), null);
-            tabHost.addTab(tabHost.newTabSpec(tagLables.get(i)).setIndicator(tags.get(i), null), list.get(i), null);
-            //其它设置 选项卡之间没有分割线
-            tabHost.getTabWidget().setDividerDrawable(null);
-        }*/
 
         tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖", null), SellFragment
                 .class, null);
         tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买", null), BuyFragment
                         .class,null);
 
-        /*tabHost.addTab(tabHost.newTabSpec("sell").setIndicator("我要卖").setContent(R.id.fragment_sell));
-        tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买").setContent(R.id.fragment_buy));*/
+        floatRatio = view.findViewById(R.id.float_ratio);
+        currentRrice = view.findViewById(R.id.current_price);
+        currentAveragePrice = view.findViewById(R.id.current_average_price);
+        currentHighPrice = view.findViewById(R.id.current_high_price);
 
-        /*//逐个按钮添加特效
-        for (int i = 0; i < tabHost.getChildCount(); i++) {
-            //换字体颜色
-            TextView tv = tabHost.getChildAt(i).findViewById(android.R.id.title);
-            tv.setTextColor(Color.rgb(255, 255, 255));
+        String method = "user/getConstant/";
+        String result = HttpUtils.getJsonByInternet(method);
+        Log.d("debugTest",result);
+
+        try {
+            JSONObject jsonObject1 = new JSONObject(result);
+            String code = jsonObject1.getString("code");
+            if ("000000".equals(code))
+            {
+                JSONObject data = jsonObject1.getJSONObject("data");
+                floatRatio.setText(data.getString("floatRatio") + "%");
+                currentRrice.setText(data.getString("currentRrice") );
+                currentAveragePrice.setText(data.getString("currentAveragePrice") );
+                currentHighPrice.setText(data.getString("currentHighPrice") );
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        tabHost.setCurrentTab(0);*/
+
         return view;
     }
 
