@@ -168,7 +168,7 @@
             <RelativeLayout android:name="com.btc.application.ui.dashboard.SellFragment"
                 android:id="@+id/fragment_sell"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="200dp"/>
 
             <RelativeLayout android:name="com.btc.application.ui.dashboard.BuyFragment"
                 android:id="@+id/fragment_buy"
