@@ -38,8 +38,17 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case LOAD_DATA_FINISH:
-                    tv_load_more.setText(R.string.load_more_data);
-                    pb_load_progress.setVisibility(View.GONE);
+
+                    if (maxLenth >= requestSize)
+                    {
+                        tv_load_more.setText(R.string.load_more_data);
+                        pb_load_progress.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        tv_load_more.setText(R.string.no_more_data);
+                        pb_load_progress.setVisibility(View.GONE);
+                    }
 
                     if(mAdapter!=null){
                         mAdapter.notifyDataSetChanged();
@@ -84,7 +93,9 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
         pb_load_progress = (ProgressBar) moreView.findViewById(R.id.pb_load_progress);
 
         mListView = root.findViewById(R.id.list_buy);
-
+        currentPage = 1;
+        startIndex = 0;
+        dataList.clear();
 
         try {
             jsonObject.put("current", currentPage);

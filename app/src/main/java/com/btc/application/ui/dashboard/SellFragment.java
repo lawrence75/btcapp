@@ -84,7 +84,9 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
         pb_load_progress = (ProgressBar) moreView.findViewById(R.id.pb_load_progress);
 
         mListView = root.findViewById(R.id.list_sell);
-
+        currentPage = 1;
+        startIndex = 0;
+        dataList.clear();
 
         try {
             jsonObject.put("current", currentPage);
