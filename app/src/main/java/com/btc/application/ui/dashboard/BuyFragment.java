@@ -39,16 +39,8 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
             switch (msg.what) {
                 case LOAD_DATA_FINISH:
 
-                    if (maxLenth >= requestSize)
-                    {
-                        tv_load_more.setText(R.string.load_more_data);
-                        pb_load_progress.setVisibility(View.GONE);
-                    }
-                    else
-                    {
-                        tv_load_more.setText(R.string.no_more_data);
-                        pb_load_progress.setVisibility(View.GONE);
-                    }
+                    tv_load_more.setText(R.string.load_more_data);
+                    pb_load_progress.setVisibility(View.GONE);
 
                     if(mAdapter!=null){
                         mAdapter.notifyDataSetChanged();
@@ -130,6 +122,16 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
         mListView.setAdapter(mAdapter);
 
         setListener();
+        if (maxLenth >= requestSize)
+        {
+            tv_load_more.setText(R.string.load_more_data);
+            pb_load_progress.setVisibility(View.GONE);
+        }
+        else
+        {
+            tv_load_more.setText(R.string.no_more_data);
+            pb_load_progress.setVisibility(View.GONE);
+        }
         return root;
     }
 
