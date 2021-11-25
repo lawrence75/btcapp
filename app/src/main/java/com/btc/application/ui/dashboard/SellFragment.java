@@ -1,8 +1,6 @@
 package com.btc.application.ui.dashboard;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -12,30 +10,21 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.btc.application.myapplication.R;
-import com.btc.application.ui.extend.ExtendsViewModel;
-import com.btc.application.ui.login.LoginActivity;
-import com.btc.application.util.HttpUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SellFragment extends Fragment implements AbsListView.OnScrollListener {
 
@@ -88,7 +77,7 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
         tv_load_more = (TextView) moreView.findViewById(R.id.tv_load_more);
         pb_load_progress = (ProgressBar) moreView.findViewById(R.id.pb_load_progress);
 
-        mListView = root.findViewById(R.id.lv_expense);
+        mListView = root.findViewById(R.id.list_sell);
 
         for (int i = 0; i < 10; i++) {
             JSONObject dn = new JSONObject();
@@ -266,13 +255,23 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.item, null);
+                convertView = inflater.inflate(R.layout.item_sell_list, null);
 
                 holder = new ViewHolder();
-                holder.tv_title = (TextView) convertView
-                        .findViewById(R.id.the_first_number);
-                holder.tv_content = (TextView) convertView
-                        .findViewById(R.id.the_option);
+                holder.tv_user_id = (TextView) convertView
+                        .findViewById(R.id.user_id);
+                holder.tv_sell_count = (TextView) convertView
+                        .findViewById(R.id.sell_count);
+                holder.tv_min_limit = (TextView) convertView
+                        .findViewById(R.id.min_limit);
+                holder.iv_pay_method = (ImageView) convertView
+                        .findViewById(R.id.pay_method);
+                holder.tv_label_price = (TextView) convertView
+                        .findViewById(R.id.label_price);
+                holder.tv_price = (TextView) convertView
+                        .findViewById(R.id.price);
+                holder.bt_sell = (Button) convertView
+                        .findViewById(R.id.sell);
 
                 convertView.setTag(holder);
             } else {
@@ -282,8 +281,13 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
             JSONObject dn = dataList.get(position);
 
             try {
-                holder.tv_title.setText(dn.getString("num"));
-                holder.tv_content.setText(dn.getString("price"));
+                holder.tv_user_id.setText(dn.getString("num"));
+                holder.tv_sell_count.setText(dn.getString("price"));
+                holder.tv_min_limit.setText("tv_min_limit");
+                holder.iv_pay_method.setImageResource(R.drawable.wechat);
+                holder.tv_label_price.setText("tv_label_price");
+                holder.tv_price.setText("tv_price");
+                holder.bt_sell.setText("bt_sell");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -294,7 +298,12 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
     }
 
     static class ViewHolder {
-        public TextView tv_title;
-        public TextView tv_content;
+        public TextView tv_user_id;
+        public TextView tv_sell_count;
+        public TextView tv_min_limit;
+        public ImageView iv_pay_method;
+        public TextView tv_label_price;
+        public TextView tv_price;
+        public Button bt_sell;
     }
 }

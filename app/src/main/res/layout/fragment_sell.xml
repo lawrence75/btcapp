@@ -8,7 +8,7 @@
 
     <!-- ListView控件 -->
     <ListView
-        android:id="@+id/lv_expense"
+        android:id="@+id/list_sell"
         android:layout_width="fill_parent"
         android:layout_height="460dp"
         android:cacheColorHint="@android:color/transparent"
