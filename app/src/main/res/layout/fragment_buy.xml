@@ -3,28 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="460dp"
     tools:context="com.btc.application.ui.dashboard.BuyFragment">
 
-    <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_second_fragment"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- ListView控件 -->
+    <ListView
+        android:id="@+id/list_buy"
+        android:layout_width="fill_parent"
+        android:layout_height="460dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:paddingTop="184dp"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_withdraw"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>

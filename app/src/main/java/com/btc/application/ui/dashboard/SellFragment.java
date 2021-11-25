@@ -268,19 +268,19 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
                 holder = new ViewHolder();
                 holder.tv_user_id = (TextView) convertView
-                        .findViewById(R.id.user_id);
+                        .findViewById(R.id.sell_user_id);
                 holder.tv_sell_count = (TextView) convertView
                         .findViewById(R.id.sell_count);
                 holder.tv_min_limit = (TextView) convertView
-                        .findViewById(R.id.min_limit);
+                        .findViewById(R.id.sell_min_limit);
                 holder.iv_pay_method = (ImageView) convertView
-                        .findViewById(R.id.pay_method);
+                        .findViewById(R.id.sell_pay_method);
                 holder.tv_label_price = (TextView) convertView
-                        .findViewById(R.id.label_price);
+                        .findViewById(R.id.sell_label);
                 holder.tv_price = (TextView) convertView
-                        .findViewById(R.id.price);
+                        .findViewById(R.id.sell_price);
                 holder.bt_sell = (Button) convertView
-                        .findViewById(R.id.sell);
+                        .findViewById(R.id.bt_sell);
 
                 convertView.setTag(holder);
             } else {

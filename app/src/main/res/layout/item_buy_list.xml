@@ -11,28 +11,28 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/sell_user_id"
+            android:id="@+id/buy_user_id"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
-            android:id="@+id/sell_count"
+            android:id="@+id/buy_count"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
-            android:id="@+id/sell_min_limit"
+            android:id="@+id/buy_min_limit"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <ImageView
-            android:id="@+id/sell_pay_method"
+            android:id="@+id/buy_pay_method"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/transaction_background"/>
@@ -47,7 +47,7 @@
         android:textSize="12dp">
 
         <TextView
-            android:id="@+id/sell_label"
+            android:id="@+id/buy_label"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -55,7 +55,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/sell_price"
+            android:id="@+id/buy_price"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -63,7 +63,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/bt_sell"
+            android:id="@+id/bt_buy"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_gravity="start"/>
