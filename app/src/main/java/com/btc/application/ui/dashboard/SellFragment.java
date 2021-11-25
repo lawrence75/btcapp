@@ -14,17 +14,17 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.btc.application.myapplication.R;
-
+import com.btc.application.util.Constant;
+import com.btc.application.util.HttpUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SellFragment extends Fragment implements AbsListView.OnScrollListener {
 
@@ -54,9 +54,15 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
     };
 
     private int startIndex = 0;
+    private int currentPage = 1;
     private int requestSize = 10;
+    private int maxLenth = 0;
 
     private ListView mListView;
+
+    private JSONArray jsonArray = new JSONArray();
+
+    private JSONObject jsonObject = new JSONObject();
 
     private View moreView;
 
@@ -79,74 +85,38 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
         mListView = root.findViewById(R.id.list_sell);
 
-        for (int i = 0; i < 10; i++) {
-            JSONObject dn = new JSONObject();
-            try {
-                dn.put("num" , "第 " + i + " 行标题");
-                dn.put("price" , "" + i + " 行内容");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-            dataList.add(dn);
+        try {
+            jsonObject.put("current", currentPage);
+            jsonObject.put("size", requestSize);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        String method = "user/getSellList";
+        JSONObject data = new JSONObject();
+        String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+        Log.v(TAG , result);
+        try {
+            JSONObject jsonObject1 = new JSONObject(result);
+            String code = jsonObject1.getString("code");
+            if ("000000".equals(code))
+            {
+                data = jsonObject1.getJSONObject("data");
+                jsonArray = data.getJSONArray("list");
+                maxLenth = data.getInt("totalCount");
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject myJsonObject = jsonArray.getJSONObject(i);
+                    dataList.add(myJsonObject);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         mListView.addFooterView(moreView);
         mAdapter = new DataAdapter(container.getContext());
         mListView.setAdapter(mAdapter);
-
-        /*List<Map<String, Object>> listitem = new ArrayList<Map<String, Object>>(); //存储数据的数组列表
-//写死的数据，用于测试
-        int[] item1 = new int[]{R.drawable.wechat
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo
-                , R.drawable.alipay_logo}; //存储图片
-        String[] item2 = new String[] {"发工资1", "买衣服2" ,"发工资3", "买衣服4","发工资5",
-                "买衣服6","发工资7", "买衣服8"};
-        String[] item3 = new String[] {"1.00", "2.00","3.00", "4.00",
-                "5.00", "6.00","7.00", "8.00"};
-        String[] item4 = new String[] {"aaa1", "aaa2.00","aaa3.00", "a4.00",
-                "a5.00", "a6.00","a7.00", "a8.00"};
-        String[] item5 = new String[] {"b1.00", "b2.00","b3.00", "b4.00",
-                "b5.00", "b6.00","b7.00", "b8.00"};
-        String[] item6 = new String[] {"c1.00", "c2.00","c3.00", "c4.00",
-                "c5.00", "c6.00","c7.00", "c8.00"};
-        String[] item7 = new String[] {"d1.00", "d2.00","d3.00", "d4.00",
-                "d5.00", "d6.00","d7.00", "d8.00"};
-        String[] item8 = new String[] {"e1.00", "e2.00","e3.00", "e4.00",
-                "e5.00", "e6.00","e7.00", "e8.00"};
-        for (int i = 0; i < item1.length; i++)
-        {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("item1", item1[i]);
-            map.put("item2", item2[i]);
-            map.put("item3", item3[i]);
-            map.put("item4", item4[i]);
-            map.put("item5", item5[i]);
-            map.put("item6", item6[i]);
-            map.put("item7", item7[i]);
-            map.put("item8", item8[i]);
-            listitem.add(map);
-        }
-
-//创建适配器
-// 第一个参数是上下文对象
-// 第二个是listitem
-// 第三个是指定每个列表项的布局文件
-// 第四个是指定Map对象中定义的两个键（这里通过字符串数组来指定）
-// 第五个是用于指定在布局文件中定义的id（也是用数组来指定）
-        SimpleAdapter adapter = new SimpleAdapter(getActivity()
-                , listitem
-                , R.layout.item
-                , new String[]{"item1", "item2", "item3", "item4"
-                , "item5", "item6", "item7", "item8"}
-                , new int[]{R.id.the_first_number, R.id.the_option, R.id.the_second_number
-                , R.id.the_equal, R.id.surplus, R.id.root, R.id.clear, R.id.delete});*/
-
-//        mListView.setAdapter(adapter);
 
         setListener();
         return root;
@@ -179,9 +149,48 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
             public void run() {
 
-                if (startIndex + requestSize <50) {
+                if (startIndex < maxLenth) {
+                    try {
+                        jsonObject.put("current", ++currentPage);
+                        jsonObject.put("size", requestSize);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                    for (int i = startIndex; i < startIndex + requestSize; i++) {
+                    String method = "user/getSellList";
+                    JSONObject data = new JSONObject();
+                    String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+                    Log.v(TAG , result);
+                    try {
+                        JSONObject jsonObject1 = new JSONObject(result);
+                        String code = jsonObject1.getString("code");
+                        if ("000000".equals(code))
+                        {
+                            data = jsonObject1.getJSONObject("data");
+                            jsonArray = data.getJSONArray("list");
+                            maxLenth = data.getInt("totalCount");
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject myJsonObject = jsonArray.getJSONObject(i);
+                                dataList.add(myJsonObject);
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    /*int lenth = startIndex + requestSize > maxLenth ? maxLenth : startIndex + requestSize;
+
+                    for(int i=startIndex;i<lenth;i++){
+                        JSONObject myJsonObject = null;
+                        try {
+                            myJsonObject = jsonArray.getJSONObject(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        dataList.add(myJsonObject);
+                    }*/
+
+                    /*for (int i = startIndex; i < maxLenth; i++) {
 
                         JSONObject dn = new JSONObject();
                         try {
@@ -192,7 +201,7 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                         }
 
                         dataList.add(dn);
-                    }
+                    }*/
 
                     try {
                         Thread.sleep(3000);
@@ -280,14 +289,33 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
             JSONObject dn = dataList.get(position);
 
+            Random r = new Random();
+            int ran = r.nextInt(3);
             try {
-                holder.tv_user_id.setText(dn.getString("num"));
-                holder.tv_sell_count.setText(dn.getString("price"));
-                holder.tv_min_limit.setText("tv_min_limit");
-                holder.iv_pay_method.setImageResource(R.drawable.wechat);
-                holder.tv_label_price.setText("tv_label_price");
-                holder.tv_price.setText("tv_price");
-                holder.bt_sell.setText("bt_sell");
+                holder.tv_user_id.setText(dn.getString("userId"));
+                holder.tv_sell_count.setText(dn.getString("num") + Constant.BLANK + Constant.GCM);
+                holder.tv_min_limit.setText(dn.getString("min") + Constant.BLANK + Constant.GCM);
+                switch(ran)
+                {
+                    case 0:
+                    {
+                        holder.iv_pay_method.setImageResource(R.drawable.wechat);
+                        break;
+                    }
+                    case 1:
+                    {
+                        holder.iv_pay_method.setImageResource(R.drawable.alipay_logo);
+                        break;
+                    }
+                    case 2:
+                    {
+                        holder.iv_pay_method.setImageResource(R.drawable.bank_card);
+                        break;
+                    }
+                }
+                holder.tv_label_price.setText("单价");
+                holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
+                holder.bt_sell.setText("出售");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

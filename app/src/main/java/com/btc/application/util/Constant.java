@@ -11,4 +11,9 @@ public interface Constant {
 
     public static final String CACHE_FILE_PATH = "/storage/emulated/0/Android/data/com.btc.application/cache/";
 
+    public static String GCM = "GCM";
+
+    public static String CNY = "CNY";
+
+    public static String BLANK = " ";
 }
