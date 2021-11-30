@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,13 @@ public class DashboardFragment extends Fragment {
         currentRrice = view.findViewById(R.id.current_price);
         currentAveragePrice = view.findViewById(R.id.current_average_price);
         currentHighPrice = view.findViewById(R.id.current_high_price);
+
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                Log.d("tabId ======== ",tabId);
+            }
+        });
 
         String method = "user/getConstant/";
         String result = HttpUtils.getJsonByInternet(method);
