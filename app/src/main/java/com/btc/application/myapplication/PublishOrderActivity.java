@@ -25,15 +25,15 @@ public class PublishOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set2ndpwd);
+        setContentView(R.layout.activity_publish_order);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView pwdView = findViewById(R.id.pwd);
-        final TextView confirmpwdView = findViewById(R.id.confirmpwd);
-        final Button setpwdBtn = findViewById(R.id.setpwd);
+        final TextView inputNum = findViewById(R.id.input_num);
+        final TextView minPrice = findViewById(R.id.min_price);
+        final Button cbtPublish = findViewById(R.id.cbt_publish);
 
-        setpwdBtn.setOnClickListener(new View.OnClickListener() {
+        cbtPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 获取SharedPreference
@@ -43,13 +43,13 @@ public class PublishOrderActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("id", id);
-                    jsonObject.put("secondPwd", pwdView.getText().toString());
-                    jsonObject.put("confirmSecondPwd", confirmpwdView.getText().toString());
+                    jsonObject.put("secondPwd", inputNum.getText().toString());
+                    jsonObject.put("confirmSecondPwd", minPrice.getText().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                String method = "user/set2ndPwd";
+                /*String method = "user/set2ndPwd";
                 String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
                 Log.v(TAG , result);
                 try {
@@ -67,7 +67,7 @@ public class PublishOrderActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
     }
