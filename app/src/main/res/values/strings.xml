@@ -73,6 +73,9 @@
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
 
+    <string name="bt_publish">发布</string>
+    <string name="bt_order">订单</string>
+
     <string name="hello_first_fragment">我要卖111</string>
     <string name="hello_second_fragment">我要买222</string>
     <string name="title_activity_sc">安全中心</string>

@@ -59,6 +59,10 @@
             android:label="@string/title_notice"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
+            android:name=".PublishOrderActivity"
+            android:label="@string/bt_publish"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name="com.btc.application.MainActivity"
             android:label="@string/title_activity_main"
             android:parentActivityName="com.btc.application.ui.login.LoginActivity" />

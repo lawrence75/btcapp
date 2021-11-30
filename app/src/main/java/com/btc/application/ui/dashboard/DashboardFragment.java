@@ -1,15 +1,24 @@
 package com.btc.application.ui.dashboard;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTabHost;
+
+import com.btc.application.MainActivity;
+import com.btc.application.myapplication.PublishOrderActivity;
 import com.btc.application.myapplication.R;
+import com.btc.application.myapplication.Set2ndpwdActivity;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +76,15 @@ public class DashboardFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        final Button publishBtn = view.findViewById(R.id.bt_publish);
+
+        publishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(container.getContext(), PublishOrderActivity.class));
+            }
+        });
 
         return view;
     }
