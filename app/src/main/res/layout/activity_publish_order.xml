@@ -63,11 +63,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <EditText
+        android:id="@+id/unit_price"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/password"
+        android:hint="@string/prompt_unit_price"
+        android:imeOptions="actionDone"
+        android:selectAllOnFocus="true"
+        android:textColorHint="@color/white"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:maxLength="6"
+        android:digits="0123456789"
+        app:layout_constraintTop_toBottomOf="@id/min_price"
+        app:layout_constraintLeft_toLeftOf="@id/min_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <com.btc.application.util.CustomBtn
         android:id="@+id/cbt_publish"
         android:layout_width="310dp"
         android:layout_height="35dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="340dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/buynow"
         android:text="@string/action_publish_confirm"
@@ -77,8 +97,8 @@
         android:layout_gravity="center_horizontal"
         android:maxLength="6"
         android:digits="0123456789"
-        app:layout_constraintTop_toBottomOf="@id/min_price"
-        app:layout_constraintLeft_toLeftOf="@id/min_price"
+        app:layout_constraintTop_toBottomOf="@id/unit_price"
+        app:layout_constraintLeft_toLeftOf="@id/unit_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

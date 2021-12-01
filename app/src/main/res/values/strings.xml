@@ -8,6 +8,7 @@
     <string name="prompt_confirmpwd">请再次输入密码</string>
     <string name="prompt_input_num">请输入数量</string>
     <string name="prompt_min_price">请输入最小限额</string>
+    <string name="prompt_unit_price">请输入单价</string>
     <string name="prompt_address">请输入地址</string>
     <string name="prompt_coincount">请输入数量，至少100币,手续费5%</string>
     <string name="prompt_2ndpwd">请输入二级密码</string>
