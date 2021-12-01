@@ -73,7 +73,7 @@ public class PublishOrderActivity extends AppCompatActivity {
                 Integer id = preference.getInt("id", 0);
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("id", id);
+                    jsonObject.put("userId", id);
                     jsonObject.put("num", inputNum.getText().toString());
                     jsonObject.put("min", minPrice.getText().toString());
                     jsonObject.put("price", unitPrice.getText().toString());
