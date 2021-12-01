@@ -9,17 +9,17 @@
 
     <Button
         android:id="@+id/bt_publish"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="10dp"
         android:text="@string/bt_publish"/>
 
     <Button
         android:id="@+id/bt_order"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginStart="300dp"
+        android:layout_marginStart="280dp"
         android:layout_marginTop="10dp"
         android:text="@string/bt_order"/>
 
