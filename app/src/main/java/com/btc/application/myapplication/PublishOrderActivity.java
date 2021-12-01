@@ -67,6 +67,7 @@ public class PublishOrderActivity extends AppCompatActivity {
         cbtPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cbtPublish.setEnabled(Boolean.FALSE);
                 // 获取SharedPreference
                 SharedPreferences preference = v.getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
                 // 获取存在SharedPreference中的用户名
