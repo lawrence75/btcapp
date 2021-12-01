@@ -1,7 +1,6 @@
 package com.btc.application.ui.dashboard;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,16 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTabHost;
-
-import com.btc.application.MainActivity;
 import com.btc.application.myapplication.PublishOrderActivity;
 import com.btc.application.myapplication.R;
-import com.btc.application.myapplication.Set2ndpwdActivity;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,10 +23,12 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private FragmentTabHost tabHost;
+    private TextView tabText;
     private TextView floatRatio;
     private TextView currentRrice;
     private TextView currentAveragePrice;
     private TextView currentHighPrice;
+    public static final String FLAG = "flag";
 
     @Nullable
     @Override
@@ -54,6 +50,9 @@ public class DashboardFragment extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("我要买", null), BuyFragment
                         .class,null);
 
+        tabText = view.findViewById(R.id.tab_text);
+        tabText.setText("sell");
+        tabText.setVisibility(View.GONE);
         floatRatio = view.findViewById(R.id.float_ratio);
         currentRrice = view.findViewById(R.id.current_price);
         currentAveragePrice = view.findViewById(R.id.current_average_price);
@@ -62,7 +61,7 @@ public class DashboardFragment extends Fragment {
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                Log.d("tabId ======== ",tabId);
+                tabText.setText(tabId);
             }
         });
 
@@ -90,7 +89,9 @@ public class DashboardFragment extends Fragment {
         publishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(container.getContext(), PublishOrderActivity.class));
+                Intent intent = new Intent(container.getContext(), PublishOrderActivity.class);
+                intent.putExtra(FLAG , tabText.getText());  // 传递参数，根据需要填写
+                startActivity(intent);
             }
         });
 

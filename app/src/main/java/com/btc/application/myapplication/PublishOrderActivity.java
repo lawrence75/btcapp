@@ -3,17 +3,13 @@ package com.btc.application.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.btc.application.MainActivity;
-import com.btc.application.util.HttpUtils;
+import com.btc.application.ui.dashboard.DashboardFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +23,26 @@ public class PublishOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_order);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        // B类接收数据
+        final Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+// 接收参数，参数类型可以是八大基本类型、String、八大基本类型的数组
+        Object flag = bundle.getString(DashboardFragment.FLAG);
+
+        if (null != flag)
+        {
+            String flagStr = flag.toString();
+            if ("sell".equals(flagStr))
+            {
+                toolbar.setTitle("发布出售信息");
+            }
+            else if ("buy".equals(flagStr))
+            {
+                toolbar.setTitle("发布购买信息");
+            }
+        }
+
         setSupportActionBar(toolbar);
 
         final TextView inputNum = findViewById(R.id.input_num);
