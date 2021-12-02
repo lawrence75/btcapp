@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTabHost;
+
+import com.btc.application.myapplication.OrderListActivity;
 import com.btc.application.myapplication.PublishOrderActivity;
 import com.btc.application.myapplication.R;
 import com.btc.application.util.HttpUtils;
@@ -85,11 +87,21 @@ public class DashboardFragment extends Fragment {
         }
 
         final Button publishBtn = view.findViewById(R.id.bt_publish);
+        final Button btOrder = view.findViewById(R.id.bt_order);
 
         publishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(container.getContext(), PublishOrderActivity.class);
+                intent.putExtra(FLAG , tabText.getText());  // 传递参数，根据需要填写
+                startActivity(intent);
+            }
+        });
+
+        btOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(container.getContext(), OrderListActivity.class);
                 intent.putExtra(FLAG , tabText.getText());  // 传递参数，根据需要填写
                 startActivity(intent);
             }
