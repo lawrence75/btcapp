@@ -285,8 +285,8 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
             int ran = r.nextInt(3);
             try {
                 holder.tv_user_id.setText(dn.getString("userId"));
-                holder.tv_buy_count.setText(dn.getString("num") + Constant.BLANK + Constant.GCM);
-                holder.tv_min_limit.setText(dn.getString("min") + Constant.BLANK + Constant.GCM);
+                holder.tv_buy_count.setText(Constant.LABEL_NUM + dn.getString("num") + Constant.BLANK + Constant.GCM);
+                holder.tv_min_limit.setText(Constant.LABEL_MIN + dn.getString("min") + Constant.BLANK + Constant.GCM);
                 switch(ran)
                 {
                     case 0:
@@ -306,7 +306,7 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
                     }
                 }
                 holder.tv_label_price.setText("单价");
-                holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
+                holder.tv_price.setText(Constant.LABEL_PRICE + dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_buy.setText("买入");
 
                 holder.bt_buy.setOnClickListener(new View.OnClickListener() {

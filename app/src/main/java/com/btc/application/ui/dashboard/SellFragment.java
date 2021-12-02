@@ -34,6 +34,14 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
     private static final int LOAD_DATA_FINISH = 1;
 
+    public static final String USER_ID = "USER_ID";
+
+    public static final String NUM = "num";
+
+    public static final String MIN = "min";
+
+    public static final String PRICE = "price";
+
     private static final String TAG = SellFragment.class.getName();
 
     private List<JSONObject> dataList = new ArrayList<JSONObject>();
@@ -284,8 +292,8 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
             int ran = r.nextInt(3);
             try {
                 holder.tv_user_id.setText(dn.getString("userId"));
-                holder.tv_sell_count.setText(dn.getString("num") + Constant.BLANK + Constant.GCM);
-                holder.tv_min_limit.setText(dn.getString("min") + Constant.BLANK + Constant.GCM);
+                holder.tv_sell_count.setText(Constant.LABEL_NUM + dn.getString("num") + Constant.BLANK + Constant.GCM);
+                holder.tv_min_limit.setText(Constant.LABEL_MIN + dn.getString("min") + Constant.BLANK + Constant.GCM);
                 switch(ran)
                 {
                     case 0:
@@ -305,14 +313,21 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                     }
                 }
                 holder.tv_label_price.setText("单价");
-                holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
+                holder.tv_price.setText(Constant.LABEL_PRICE + dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_sell.setText("出售");
 
                 holder.bt_sell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(mListView.getContext(), SellDetailActivity.class);
-                        intent.putExtra("FLAG" , "aaa");  // 传递参数，根据需要填写
+                        try {
+                            intent.putExtra(USER_ID, dn.getString("userId"));
+                            intent.putExtra(NUM, dn.getString("num"));
+                            intent.putExtra(MIN, dn.getString("min"));
+                            intent.putExtra(PRICE, dn.getString("price"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         startActivity(intent);
                     }
                 });
