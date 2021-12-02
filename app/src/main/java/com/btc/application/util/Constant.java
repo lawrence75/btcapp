@@ -17,6 +17,8 @@ public interface Constant {
 
     public static String BLANK = " ";
 
+    public static String LABEL_USER_ID = "用户ID : ";
+
     public static String LABEL_NUM = "数量 : ";
 
     public static String LABEL_MIN = "最小限额 : ";

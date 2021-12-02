@@ -12,21 +12,21 @@
 
         <TextView
             android:id="@+id/buy_user_id"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/buy_count"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/buy_min_limit"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="20dp"
             android:textColor="@color/black"
             android:textSize="12dp" />
