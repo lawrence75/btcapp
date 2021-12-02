@@ -67,6 +67,14 @@
             android:label="@string/bt_order"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
+            android:name=".SellDetailActivity"
+            android:label="@string/sell_detail"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".BuyDetailActivity"
+            android:label="@string/buy_detail"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name="com.btc.application.MainActivity"
             android:label="@string/title_activity_main"
             android:parentActivityName="com.btc.application.ui.login.LoginActivity" />

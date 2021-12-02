@@ -1,6 +1,7 @@
 package com.btc.application.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,7 +17,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.btc.application.myapplication.BuyDetailActivity;
 import com.btc.application.myapplication.R;
+import com.btc.application.myapplication.SellDetailActivity;
 import com.btc.application.util.Constant;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONArray;
@@ -304,6 +308,15 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
                 holder.tv_label_price.setText("单价");
                 holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_buy.setText("买入");
+
+                holder.bt_buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mListView.getContext(), BuyDetailActivity.class);
+                        intent.putExtra("FLAG" , "aaa");  // 传递参数，根据需要填写
+                        startActivity(intent);
+                    }
+                });
             } catch (JSONException e) {
                 e.printStackTrace();
             }

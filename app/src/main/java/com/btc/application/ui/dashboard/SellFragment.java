@@ -1,6 +1,7 @@
 package com.btc.application.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,7 +17,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.btc.application.myapplication.OrderListActivity;
 import com.btc.application.myapplication.R;
+import com.btc.application.myapplication.SellDetailActivity;
 import com.btc.application.util.Constant;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONArray;
@@ -190,31 +194,6 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                         e.printStackTrace();
                     }
 
-                    /*int lenth = startIndex + requestSize > maxLenth ? maxLenth : startIndex + requestSize;
-
-                    for(int i=startIndex;i<lenth;i++){
-                        JSONObject myJsonObject = null;
-                        try {
-                            myJsonObject = jsonArray.getJSONObject(i);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        dataList.add(myJsonObject);
-                    }*/
-
-                    /*for (int i = startIndex; i < maxLenth; i++) {
-
-                        JSONObject dn = new JSONObject();
-                        try {
-                            dn.put("price" , "增加 第 " + i + " 行标题");
-                            dn.put("num" , "增加 第 " + i + " 行内容");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        dataList.add(dn);
-                    }*/
-
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
@@ -328,6 +307,16 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                 holder.tv_label_price.setText("单价");
                 holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_sell.setText("出售");
+
+                holder.bt_sell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mListView.getContext(), SellDetailActivity.class);
+                        intent.putExtra("FLAG" , "aaa");  // 传递参数，根据需要填写
+                        startActivity(intent);
+                    }
+                });
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

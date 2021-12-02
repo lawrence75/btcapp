@@ -80,8 +80,8 @@
     <string name="bt_publish">发布</string>
     <string name="bt_order">订单</string>
 
-    <string name="hello_first_fragment">我要卖111</string>
-    <string name="hello_second_fragment">我要买222</string>
+    <string name="sell_detail">出售详情</string>
+    <string name="buy_detail">购买详情</string>
     <string name="title_activity_sc">安全中心</string>
     <string name="title_activity_pc">个人设置</string>
 </resources>
