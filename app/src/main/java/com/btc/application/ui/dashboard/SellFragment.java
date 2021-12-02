@@ -34,6 +34,8 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
     private static final int LOAD_DATA_FINISH = 1;
 
+    public static final String ID = "ID";
+
     public static final String USER_ID = "USER_ID";
 
     public static final String NUM = "num";
@@ -321,6 +323,7 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                     public void onClick(View v) {
                         Intent intent = new Intent(mListView.getContext(), SellDetailActivity.class);
                         try {
+                            intent.putExtra(ID, dn.getString("id"));
                             intent.putExtra(USER_ID, dn.getString("userId"));
                             intent.putExtra(NUM, dn.getString("num"));
                             intent.putExtra(MIN, dn.getString("min"));
