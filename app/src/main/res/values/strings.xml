@@ -80,6 +80,9 @@
     <string name="bt_publish">发布</string>
     <string name="bt_order">订单</string>
 
+    <string name="sell">出售</string>
+    <string name="buy">购买</string>
+
     <string name="sell_detail">出售详情</string>
     <string name="buy_detail">购买详情</string>
     <string name="title_activity_sc">安全中心</string>

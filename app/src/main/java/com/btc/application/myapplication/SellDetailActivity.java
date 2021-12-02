@@ -12,7 +12,7 @@ public class SellDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell_list);
+        setContentView(R.layout.activity_sell_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
