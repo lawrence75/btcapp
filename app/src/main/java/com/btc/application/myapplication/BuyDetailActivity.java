@@ -6,13 +6,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.btc.application.MainActivity;
 import com.btc.application.ui.dashboard.BuyFragment;
 import com.btc.application.ui.dashboard.SellFragment;
 import com.btc.application.util.Constant;
@@ -49,7 +52,7 @@ public class BuyDetailActivity extends AppCompatActivity {
         final TextView inputNum = findViewById(R.id.buy_num);
         final TextView inputMin = findViewById(R.id.buy_min_price);
         final TextView inputPrice = findViewById(R.id.buy_unit_price);
-        final ImageView receiveCodeImage = findViewById(R.id.receive_code_image);
+//        final ImageView receiveCodeImage = findViewById(R.id.receive_code_image);
         final Button buyBtn = findViewById(R.id.cbt_buy);
 
         if (null != num)
@@ -68,7 +71,42 @@ public class BuyDetailActivity extends AppCompatActivity {
             inputPrice.setText(Constant.LABEL_PRICE + priceStr + Constant.BLANK + Constant.CNY);
         }
 
-        // 获取SharedPreference
+        buyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 获取SharedPreference
+                SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+                // 获取存在SharedPreference中的用户名
+                Integer userId = preference.getInt("id", 0);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("id", id);
+                    jsonObject.put("sellerId", userId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String method = "user/buy";
+                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+                Log.d("debugTest",result);
+
+                try {
+                    JSONObject jsonObject1 = new JSONObject(result);
+                    String code = jsonObject1.getString("code");
+                    if ("000000".equals(code))
+                    {
+                        Log.v(TAG , code);
+                        Toast.makeText(getApplicationContext(), "提交订单成功，请到订单列表中查看！", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*// 获取SharedPreference
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
         id = preference.getInt("id", 0);
@@ -124,6 +162,6 @@ public class BuyDetailActivity extends AppCompatActivity {
         }
 
         Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + imageUrl);
-        receiveCodeImage.setImageBitmap(bitmap);
+        receiveCodeImage.setImageBitmap(bitmap);*/
     }
 }
