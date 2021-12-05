@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.btc.application.MainActivity;
 import com.btc.application.util.Constant;
 import com.btc.application.util.FileUtils;
 import com.btc.application.util.HttpUtils;
@@ -63,6 +65,7 @@ public class ModWechatCodeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         picture = findViewById(R.id.icon);
+        final Button setDefaultBtn = findViewById(R.id.cbt_set_wechat);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -108,6 +111,38 @@ public class ModWechatCodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showPop();
+            }
+        });
+
+        setDefaultBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 获取SharedPreference
+                SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+                // 获取存在SharedPreference中的用户名
+                Integer userId = preference.getInt("id", 0);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("id", id);
+                    jsonObject.put("defaultPay" , 1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String method = "user/insertOrUpdate";
+                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "PUT");
+                Log.v(TAG , result);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(result);
+                    String code = jsonObject1.getString("code");
+                    if ("000000".equals(code))
+                    {
+                        Log.v(TAG , code);
+                        Toast.makeText(getApplicationContext(), "修改成功！", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

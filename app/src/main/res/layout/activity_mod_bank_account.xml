@@ -51,4 +51,21 @@
         android:src="@drawable/more"
         />
 
+    <com.btc.application.util.CustomBtn
+        android:id="@+id/cbt_set_bank"
+        android:layout_width="310dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/buynow"
+        android:text="@string/bt_set_default"
+        android:textColorHint="@color/white"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        app:layout_constraintLeft_toLeftOf="@id/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

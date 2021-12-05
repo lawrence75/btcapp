@@ -79,6 +79,7 @@
 
     <string name="bt_publish">发布</string>
     <string name="bt_order">订单</string>
+    <string name="bt_set_default">设为默认</string>
 
     <string name="sell">出售</string>
     <string name="cfm_sell">确认出售</string>
