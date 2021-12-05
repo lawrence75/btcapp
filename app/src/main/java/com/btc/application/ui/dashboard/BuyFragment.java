@@ -313,7 +313,15 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(mListView.getContext(), BuyDetailActivity.class);
-                        intent.putExtra("FLAG" , "aaa");  // 传递参数，根据需要填写
+                        try {
+                            intent.putExtra(SellFragment.ID, dn.getString("id"));
+                            intent.putExtra(SellFragment.USER_ID, dn.getString("userId"));
+                            intent.putExtra(SellFragment.NUM, dn.getString("num"));
+                            intent.putExtra(SellFragment.MIN, dn.getString("min"));
+                            intent.putExtra(SellFragment.PRICE, dn.getString("price"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         startActivity(intent);
                     }
                 });
