@@ -17,10 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.btc.application.myapplication.BuyDetailActivity;
 import com.btc.application.myapplication.R;
-import com.btc.application.myapplication.SellDetailActivity;
 import com.btc.application.util.Constant;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONArray;

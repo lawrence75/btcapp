@@ -2,7 +2,7 @@ package com.btc.application.util;
 
 public interface Constant {
 
-    public static String APP_URL = "http://192.168.0.104/";
+    public static String APP_URL = "http://192.168.0.105/";
     //    public static String APP_URL = "http://8.136.237.10/";
 
     public static String APP_NAME = "/btc/";
