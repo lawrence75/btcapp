@@ -44,7 +44,6 @@ public class BuyDetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 // 接收参数，参数类型可以是八大基本类型、String、八大基本类型的数组
         Object id = bundle.getString(SellFragment.ID);
-//        Object userId = bundle.getString(SellFragment.USER_ID);
         Object num = bundle.getString(SellFragment.NUM);
         Object min = bundle.getString(SellFragment.MIN);
         Object price = bundle.getString(SellFragment.PRICE);
@@ -52,7 +51,6 @@ public class BuyDetailActivity extends AppCompatActivity {
         final TextView inputNum = findViewById(R.id.buy_num);
         final TextView inputMin = findViewById(R.id.buy_min_price);
         final TextView inputPrice = findViewById(R.id.buy_unit_price);
-//        final ImageView receiveCodeImage = findViewById(R.id.receive_code_image);
         final Button buyBtn = findViewById(R.id.cbt_buy);
 
         if (null != num)

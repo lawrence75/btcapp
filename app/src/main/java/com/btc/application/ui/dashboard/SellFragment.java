@@ -1,7 +1,12 @@
 package com.btc.application.ui.dashboard;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -15,9 +20,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.btc.application.MainActivity;
 import com.btc.application.myapplication.OrderListActivity;
 import com.btc.application.myapplication.R;
 import com.btc.application.myapplication.SellDetailActivity;
@@ -98,6 +106,22 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
         pb_load_progress = (ProgressBar) moreView.findViewById(R.id.pb_load_progress);
 
         mListView = root.findViewById(R.id.list_sell);
+
+        mAdapter = new DataAdapter(container.getContext());
+
+        init();
+
+        mListView.addFooterView(moreView);
+
+        mListView.setAdapter(mAdapter);
+
+        setListener();
+
+        return root;
+    }
+
+    private void init()
+    {
         currentPage = 1;
         startIndex = 0;
         dataList.clear();
@@ -130,11 +154,6 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
             e.printStackTrace();
         }
 
-        mListView.addFooterView(moreView);
-        mAdapter = new DataAdapter(container.getContext());
-        mListView.setAdapter(mAdapter);
-
-        setListener();
         if (maxLenth >= requestSize)
         {
             tv_load_more.setText(R.string.load_more_data);
@@ -145,8 +164,8 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
             tv_load_more.setText(R.string.no_more_data);
             pb_load_progress.setVisibility(View.GONE);
         }
-        return root;
     }
+
 
     private void setListener() {
         mListView.setOnScrollListener(this);
@@ -318,7 +337,7 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                 holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_sell.setText("出售");
 
-                holder.bt_sell.setOnClickListener(new View.OnClickListener() {
+                /*holder.bt_sell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(mListView.getContext(), SellDetailActivity.class);
@@ -332,6 +351,58 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                             e.printStackTrace();
                         }
                         startActivity(intent);
+                    }
+                });*/
+                Integer id = dn.getInt("id");
+                holder.bt_sell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog dialog = new AlertDialog.Builder(view.getContext()).setTitle("确定卖出吗?")
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //点击确定触发的事件
+                                        // 获取SharedPreference
+                                        SharedPreferences preference = view.getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+                                        // 获取存在SharedPreference中的用户名
+                                        Integer userId = preference.getInt("id", 0);
+                                        JSONObject jsonObject = new JSONObject();
+                                        try {
+                                            jsonObject.put("id", id);
+                                            jsonObject.put("buyerId", userId);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        String method = "user/sell";
+                                        String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+                                        Log.d("debugTest",result);
+
+                                        try {
+                                            JSONObject jsonObject1 = new JSONObject(result);
+                                            String code = jsonObject1.getString("code");
+                                            if ("000000".equals(code))
+                                            {
+                                                Log.v(TAG , code);
+                                                Toast.makeText(view.getContext(), "提交订单成功，请到订单列表中查看！", Toast.LENGTH_LONG).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        init();
+                                        /*Intent intent = new Intent(view.getContext(), MainActivity.class);
+                                        startActivity(intent);*/
+                                    }
+                                })
+                                .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //点击取消触发的事件
+                                        dialog.cancel();
+                                    }
+                                }).create();
+                        dialog.show();
                     }
                 });
 
