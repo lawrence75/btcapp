@@ -82,9 +82,9 @@
     <string name="bt_set_default">设为默认</string>
 
     <string name="sell">出售</string>
-    <string name="cfm_sell">确认出售</string>
+    <string name="cfm_sell">已入账，确认转币</string>
     <string name="buy">购买</string>
-    <string name="cfm_buy">确认购买</string>
+    <string name="cfm_buy">已转账，确认继续</string>
 
     <string name="sell_detail">出售详情</string>
     <string name="buy_detail">购买详情</string>
