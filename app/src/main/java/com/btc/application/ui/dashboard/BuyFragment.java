@@ -378,8 +378,6 @@ public class BuyFragment extends Fragment implements AbsListView.OnScrollListene
                                             e.printStackTrace();
                                         }
                                         init();
-                                        /*Intent intent = new Intent(view.getContext(), MainActivity.class);
-                                        startActivity(intent);*/
                                     }
                                 })
                                 .setNegativeButton("返回", new DialogInterface.OnClickListener() {

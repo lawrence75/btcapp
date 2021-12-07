@@ -70,26 +70,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <!--<ImageView
+    <ImageView
         android:id="@+id/receive_code_image"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="200dp"
         android:layout_gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/buy_unit_price"
         app:layout_constraintLeft_toLeftOf="@id/buy_unit_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />-->
+        />
 
     <com.btc.application.util.CustomBtn
         android:id="@+id/cbt_buy"
         android:layout_width="310dp"
         android:layout_height="35dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="520dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/buynow"
         android:text="@string/cfm_buy"
@@ -97,8 +97,8 @@
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/buy_unit_price"
-        app:layout_constraintLeft_toLeftOf="@id/buy_unit_price"
+        app:layout_constraintTop_toBottomOf="@id/receive_code_image"
+        app:layout_constraintLeft_toLeftOf="@id/receive_code_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

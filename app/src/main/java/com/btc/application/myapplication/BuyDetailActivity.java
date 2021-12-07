@@ -51,6 +51,7 @@ public class BuyDetailActivity extends AppCompatActivity {
         final TextView inputNum = findViewById(R.id.buy_num);
         final TextView inputMin = findViewById(R.id.buy_min_price);
         final TextView inputPrice = findViewById(R.id.buy_unit_price);
+        final ImageView receiveCodeImage = findViewById(R.id.receive_code_image);
         final Button buyBtn = findViewById(R.id.cbt_buy);
 
         if (null != num)
@@ -69,6 +70,7 @@ public class BuyDetailActivity extends AppCompatActivity {
             inputPrice.setText(Constant.LABEL_PRICE + priceStr + Constant.BLANK + Constant.CNY);
         }
 
+        Object finalId = id;
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +80,7 @@ public class BuyDetailActivity extends AppCompatActivity {
                 Integer userId = preference.getInt("id", 0);
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("id", id);
+                    jsonObject.put("id", finalId);
                     jsonObject.put("sellerId", userId);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -104,7 +106,7 @@ public class BuyDetailActivity extends AppCompatActivity {
             }
         });
 
-        /*// 获取SharedPreference
+        // 获取SharedPreference
         SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
         // 获取存在SharedPreference中的用户名
         id = preference.getInt("id", 0);
@@ -160,6 +162,6 @@ public class BuyDetailActivity extends AppCompatActivity {
         }
 
         Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + imageUrl);
-        receiveCodeImage.setImageBitmap(bitmap);*/
+        receiveCodeImage.setImageBitmap(bitmap);
     }
 }

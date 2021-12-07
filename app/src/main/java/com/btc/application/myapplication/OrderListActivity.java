@@ -1,6 +1,7 @@
 package com.btc.application.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.btc.application.ui.dashboard.SellFragment;
 import com.btc.application.util.Constant;
 import com.btc.application.util.HttpUtils;
 import org.json.JSONArray;
@@ -318,10 +321,18 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
                 holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
                 holder.bt_order.setText(operation);
 
-                /*holder.bt_order.setOnClickListener(new View.OnClickListener() {
+                holder.bt_order.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mListView.getContext(), BuyDetailActivity.class);
+                        Intent intent = null;
+                        if (1 == type)
+                        {
+                            intent = new Intent(mListView.getContext(), SellDetailActivity.class);
+                        }
+                        else if (2 == type)
+                        {
+                            intent = new Intent(mListView.getContext(), BuyDetailActivity.class);
+                        }
                         try {
                             intent.putExtra(SellFragment.ID, dn.getString("id"));
                             intent.putExtra(SellFragment.USER_ID, dn.getString("userId"));
@@ -333,7 +344,7 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
                         }
                         startActivity(intent);
                     }
-                });*/
+                });
             } catch (JSONException e) {
                 e.printStackTrace();
             }

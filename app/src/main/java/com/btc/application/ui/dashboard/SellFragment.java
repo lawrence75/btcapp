@@ -390,8 +390,6 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
                                             e.printStackTrace();
                                         }
                                         init();
-                                        /*Intent intent = new Intent(view.getContext(), MainActivity.class);
-                                        startActivity(intent);*/
                                     }
                                 })
                                 .setNegativeButton("返回", new DialogInterface.OnClickListener() {
