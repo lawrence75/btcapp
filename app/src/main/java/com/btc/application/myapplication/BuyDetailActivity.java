@@ -74,7 +74,7 @@ public class BuyDetailActivity extends AppCompatActivity {
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 获取SharedPreference
+                /*// 获取SharedPreference
                 SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
                 // 获取存在SharedPreference中的用户名
                 Integer userId = preference.getInt("id", 0);
@@ -100,7 +100,7 @@ public class BuyDetailActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
                 Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
                 startActivity(intent);
             }
