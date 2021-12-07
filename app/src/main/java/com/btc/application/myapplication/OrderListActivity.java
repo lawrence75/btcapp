@@ -58,7 +58,7 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
 
     private int startIndex = 0;
     private int currentPage = 1;
-    private int requestSize = 1;
+    private int requestSize = 10;
     private int maxLenth = 0;
 
     private ListView mListView;
@@ -266,8 +266,8 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
                 convertView = inflater.inflate(R.layout.item_order_list, null);
 
                 holder = new OrderListActivity.ViewHolder();
-                holder.tv_user_id = (TextView) convertView
-                        .findViewById(R.id.order_user_id);
+                holder.tv_order_title = (TextView) convertView
+                        .findViewById(R.id.order_title);
                 holder.tv_order_count = (TextView) convertView
                         .findViewById(R.id.order_count);
                 holder.tv_min_limit = (TextView) convertView
@@ -291,7 +291,9 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
             Random r = new Random();
             int ran = r.nextInt(3);
             try {
-                holder.tv_user_id.setText(Constant.LABEL_USER_ID + dn.getString("userId"));
+                Integer type = dn.getInt("type");
+                String operation = 2 == type ? "买入" : "卖出";
+                holder.tv_order_title.setText(operation);
                 holder.tv_order_count.setText(Constant.LABEL_NUM + dn.getString("num") + Constant.BLANK + Constant.GCM);
                 holder.tv_min_limit.setText(Constant.LABEL_MIN + dn.getString("min") + Constant.BLANK + Constant.GCM);
                 switch(ran)
@@ -314,7 +316,7 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
                 }
                 holder.tv_label_price.setText(Constant.LABEL_PRICE);
                 holder.tv_price.setText(dn.getString("price") + Constant.BLANK + Constant.CNY);
-                holder.bt_order.setText("买入");
+                holder.bt_order.setText(operation);
 
                 /*holder.bt_order.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -342,7 +344,7 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
     }
 
     static class ViewHolder {
-        public TextView tv_user_id;
+        public TextView tv_order_title;
         public TextView tv_order_count;
         public TextView tv_min_limit;
         public ImageView iv_pay_method;
