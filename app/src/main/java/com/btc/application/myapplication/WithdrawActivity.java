@@ -71,7 +71,6 @@ public class WithdrawActivity extends AppCompatActivity {
                                 // 获取存在SharedPreference中的用户名
                                 Integer id = preference.getInt("id", 0);
 
-
                                 JSONObject jsonObject = new JSONObject();
                                 try {
                                     jsonObject.put("id", id);

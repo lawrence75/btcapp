@@ -336,6 +336,7 @@ public class OrderListActivity extends AppCompatActivity implements AbsListView.
                         try {
                             intent.putExtra(SellFragment.ID, dn.getString("id"));
                             intent.putExtra(SellFragment.USER_ID, dn.getString("userId"));
+                            intent.putExtra(SellFragment.CUSTOMER_ID, dn.getString("customerId"));
                             intent.putExtra(SellFragment.NUM, dn.getString("num"));
                             intent.putExtra(SellFragment.MIN, dn.getString("min"));
                             intent.putExtra(SellFragment.PRICE, dn.getString("price"));

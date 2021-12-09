@@ -25,7 +25,6 @@
         android:layout_width="310dp"
         android:layout_height="40dp"
         android:layout_marginTop="100dp"
-        android:hint="@string/prompt_input_num"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
         android:textColor="#000000"
@@ -43,7 +42,6 @@
         android:layout_width="310dp"
         android:layout_height="40dp"
         android:layout_marginTop="160dp"
-        android:hint="@string/prompt_min_price"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
         android:textColor="#000000"
@@ -59,7 +57,6 @@
         android:layout_width="310dp"
         android:layout_height="40dp"
         android:layout_marginTop="220dp"
-        android:hint="@string/prompt_unit_price"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
         android:textColor="#000000"
@@ -70,11 +67,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:hint="@string/prompt_2ndpwd"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="260dp"
+        android:maxLength="6"
+        android:digits="0123456789"
+        app:layout_constraintTop_toBottomOf="@id/sell_unit_price"
+        app:layout_constraintLeft_toLeftOf="@id/sell_unit_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <com.btc.application.util.CustomBtn
         android:id="@+id/cbt_sell"
         android:layout_width="310dp"
         android:layout_height="35dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="320dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/buynow"
         android:text="@string/cfm_sell"
@@ -82,8 +99,8 @@
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/unit_price"
-        app:layout_constraintLeft_toLeftOf="@id/unit_price"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintLeft_toLeftOf="@id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
     

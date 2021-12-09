@@ -46,6 +46,8 @@ public class SellFragment extends Fragment implements AbsListView.OnScrollListen
 
     public static final String USER_ID = "USER_ID";
 
+    public static final String CUSTOMER_ID = "CUSTOMER_ID";
+
     public static final String NUM = "num";
 
     public static final String MIN = "min";

@@ -33,7 +33,7 @@ public class SellDetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 // 接收参数，参数类型可以是八大基本类型、String、八大基本类型的数组
         Object id = bundle.getString(SellFragment.ID);
-//        Object userId = bundle.getString(SellFragment.USER_ID);
+        Object customerId = bundle.getString(SellFragment.CUSTOMER_ID);
         Object num = bundle.getString(SellFragment.NUM);
         Object min = bundle.getString(SellFragment.MIN);
         Object price = bundle.getString(SellFragment.PRICE);
@@ -41,6 +41,7 @@ public class SellDetailActivity extends AppCompatActivity {
         final TextView inputNum = findViewById(R.id.sell_num);
         final TextView inputMin = findViewById(R.id.sell_min_price);
         final TextView inputPrice = findViewById(R.id.sell_unit_price);
+        final TextView passwordTV = findViewById(R.id.password);
         final Button sellBtn = findViewById(R.id.cbt_sell);
 
         if (null != num)
@@ -62,35 +63,59 @@ public class SellDetailActivity extends AppCompatActivity {
         sellBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*// 获取SharedPreference
-                SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
+                // 获取SharedPreference
+                SharedPreferences preference = toolbar.getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
                 // 获取存在SharedPreference中的用户名
-                Integer userId = preference.getInt("id", 0);
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("id", id);
-                    jsonObject.put("buyerId", userId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Integer id = preference.getInt("id", 0);
 
-                String method = "user/sell";
-                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+                String method = "user/getUser/";
+                String result = HttpUtils.getJsonByInternet(method+customerId);
                 Log.d("debugTest",result);
+
+                JSONObject data = new JSONObject();
 
                 try {
                     JSONObject jsonObject1 = new JSONObject(result);
                     String code = jsonObject1.getString("code");
                     if ("000000".equals(code))
                     {
-                        Log.v(TAG , code);
-                        Toast.makeText(getApplicationContext(), "提交订单成功，请到订单列表中查看！", Toast.LENGTH_LONG).show();
+                        data = jsonObject1.getJSONObject("data");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }*/
-                Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
-                startActivity(intent);
+                }
+
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("id", id);
+                    jsonObject.put("address", data.getString("address"));
+                    jsonObject.put("bit", Float.parseFloat(num.toString())
+                            * Float.parseFloat(price.toString()) );
+                    jsonObject.put("secondPwd", passwordTV.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                method = "user/transferAccount";
+                result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
+                Log.v(TAG , result);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(result);
+                    String code = jsonObject1.getString("code");
+                    if ("000000".equals(code))
+                    {
+                        Log.v(TAG , code);
+                        Toast.makeText(getApplicationContext(), "卖出成功！", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), jsonObject1.getString("message"), Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
