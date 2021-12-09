@@ -32,7 +32,7 @@ public class SellDetailActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 // 接收参数，参数类型可以是八大基本类型、String、八大基本类型的数组
-        Object id = bundle.getString(SellFragment.ID);
+        Object userId = bundle.getString(SellFragment.USER_ID);
         Object customerId = bundle.getString(SellFragment.CUSTOMER_ID);
         Object num = bundle.getString(SellFragment.NUM);
         Object min = bundle.getString(SellFragment.MIN);
@@ -69,7 +69,7 @@ public class SellDetailActivity extends AppCompatActivity {
                 Integer id = preference.getInt("id", 0);
 
                 String method = "user/getUser/";
-                String result = HttpUtils.getJsonByInternet(method+customerId);
+                String result = HttpUtils.getJsonByInternet(method+userId);
                 Log.d("debugTest",result);
 
                 JSONObject data = new JSONObject();
