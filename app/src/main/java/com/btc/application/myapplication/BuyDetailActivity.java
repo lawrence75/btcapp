@@ -1,9 +1,15 @@
 package com.btc.application.myapplication;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 
 import com.btc.application.MainActivity;
 import com.btc.application.ui.dashboard.BuyFragment;
@@ -21,6 +29,7 @@ import com.btc.application.ui.dashboard.SellFragment;
 import com.btc.application.util.Constant;
 import com.btc.application.util.FileUtils;
 import com.btc.application.util.HttpUtils;
+import com.btc.application.util.NotificationChannels;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,33 +83,23 @@ public class BuyDetailActivity extends AppCompatActivity {
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*// 获取SharedPreference
-                SharedPreferences preference = getWindow().getContext().getSharedPreferences("userinfo", MODE_PRIVATE);
-                // 获取存在SharedPreference中的用户名
-                Integer userId = preference.getInt("id", 0);
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("id", finalId);
-                    jsonObject.put("sellerId", userId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                                 String channelId = "app1";
+                                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+                                         NotificationChannel channel = new NotificationChannel(channelId,"app1",NotificationManager.IMPORTANCE_DEFAULT);
+                                         manager.createNotificationChannel(channel);
+                                     }
 
-                String method = "user/buy";
-                String result = HttpUtils.sendJsonPost(jsonObject.toString(), method , "POST");
-                Log.d("debugTest",result);
+                                 Notification notification =
+                                         new NotificationCompat.Builder(toolbar.getContext(),channelId)
+                                         .setContentTitle("通知标题")
+                                         .setContentText("通知正文")
+                                         .setWhen(System.currentTimeMillis())
+                                         .setSmallIcon(R.mipmap.ic_launcher)
+                                         .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher))
+                                         .build();
+                                 manager.notify(1,notification);
 
-                try {
-                    JSONObject jsonObject1 = new JSONObject(result);
-                    String code = jsonObject1.getString("code");
-                    if ("000000".equals(code))
-                    {
-                        Log.v(TAG , code);
-                        Toast.makeText(getApplicationContext(), "提交订单成功，请到订单列表中查看！", Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
                 Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -163,5 +162,37 @@ public class BuyDetailActivity extends AppCompatActivity {
 
         Bitmap bitmap = FileUtils.url2bitmap(Constant.APP_URL + Constant.FILE_PREFIX + imageUrl);
         receiveCodeImage.setImageBitmap(bitmap);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void sendSimpleNotification(Context context, NotificationManager nm) {
+        //创建点击通知时发送的广播
+        Intent intent = new Intent(context,BuyDetailActivity.class);
+        intent.setAction("ACTION_SIMPLE");
+        PendingIntent pi = PendingIntent.getService(context,0,intent,0);
+        //创建删除通知时发送的广播
+        Intent deleteIntent = new Intent(context,BuyDetailActivity.class);
+        deleteIntent.setAction("ACTION_DELETE");
+        PendingIntent deletePendingIntent = PendingIntent.getService(context,0,deleteIntent,0);
+        //创建通知
+        Notification.Builder nb = new Notification.Builder(context, NotificationChannels.LOW)
+                //设置通知左侧的小图标
+                .setSmallIcon(R.mipmap.ic_launcher)
+                //设置通知标题
+                .setContentTitle("Simple notification")
+                //设置通知内容
+                .setContentText("Demo for simple notification !")
+                //设置点击通知后自动删除通知
+                .setAutoCancel(true)
+                //设置显示通知时间
+                .setShowWhen(true)
+                //设置通知右侧的大图标
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher_round))
+                //设置点击通知时的响应事件
+                .setContentIntent(pi)
+                //设置删除通知时的响应事件
+                .setDeleteIntent(deletePendingIntent);
+        //发送通知
+        nm.notify(1,nb.build());
     }
 }

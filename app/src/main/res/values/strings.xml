@@ -90,4 +90,10 @@
     <string name="buy_detail">购买详情</string>
     <string name="title_activity_sc">安全中心</string>
     <string name="title_activity_pc">个人设置</string>
+
+    <string name="channel_media">多媒体</string>
+    <string name="channel_critical">严重的</string>
+    <string name="channel_importance">重要的</string>
+    <string name="channel_default">默认的</string>
+    <string name="channel_low">低级别的</string>
 </resources>
