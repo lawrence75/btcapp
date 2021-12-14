@@ -28,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import static android.content.Context.MODE_PRIVATE;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
@@ -43,6 +45,7 @@ public class NotificationsFragment extends Fragment {
     private TextView labelView3;
 
     private TextView noDataView;
+    private TextView registrationIDView;
 
     private TextView gcmView;
     private TextView cnyView;
@@ -99,6 +102,9 @@ public class NotificationsFragment extends Fragment {
         labelView3 = root.findViewById(R.id.labelView3);
 
         noDataView = root.findViewById(R.id.noDataView);
+
+        registrationIDView = root.findViewById(R.id.registrationID);
+        registrationIDView.setText(JPushInterface.getRegistrationID(getContext()));
 
         gcmView = root.findViewById(R.id.gcmView);
         cnyView = root.findViewById(R.id.cnyView);
