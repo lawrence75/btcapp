@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.huawei.agconnect'
 }
 
 android {
@@ -55,7 +56,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    implementation 'com.huawei.hms:location:6.0.0.302'
     implementation 'cn.jiguang.sdk:jpush:4.4.5'  // 此处以JPush 4.4.5 版本为例。
     implementation 'cn.jiguang.sdk:jcore:3.1.0'  // 此处以JCore 3.1.0 版本为例。
 }
