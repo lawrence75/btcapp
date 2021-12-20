@@ -130,9 +130,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject();
+                String registrationID = JPushInterface.getRegistrationID(loadingProgressBar.getContext());
                 try {
                     jsonObject.put("userAccount", usernameEditText.getText().toString());
                     jsonObject.put("password", passwordEditText.getText().toString());
+                    jsonObject.put("registrationId", registrationID);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -147,9 +149,6 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         Log.v(TAG , code);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                        JPushInterface.getRegistrationID(loadingProgressBar.getContext());
-
                         JSONObject data = jsonObject1.getJSONObject("data");
                         SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
                         editor.putString("userAccount", data.getString("userAccount"));
