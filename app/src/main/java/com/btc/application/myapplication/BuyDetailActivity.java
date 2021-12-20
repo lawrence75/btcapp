@@ -53,6 +53,7 @@ public class BuyDetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 // 接收参数，参数类型可以是八大基本类型、String、八大基本类型的数组
         Object id = bundle.getString(SellFragment.ID);
+        Object customerId = bundle.getString(SellFragment.CUSTOMER_ID);
         Object num = bundle.getString(SellFragment.NUM);
         Object min = bundle.getString(SellFragment.MIN);
         Object price = bundle.getString(SellFragment.PRICE);
@@ -103,15 +104,12 @@ public class BuyDetailActivity extends AppCompatActivity {
                 String title = "123";
                 String content = "456";
 
-                String method = "msg/send?title=" + title + "&content=" + content;
+                String method = "msg/send?title=" + title + "&content=" + content + "&id=" + customerId;
 
                 String result = HttpUtils.getJsonByInternet(method);
                 Log.d("debugTest",result);
 
                 JSONObject data = new JSONObject();
-                Integer defaultPay = 0;
-                String imageUrl = "";
-
                 try {
                     JSONObject jsonObject1 = new JSONObject(result);
                     String code = jsonObject1.getString("code");
