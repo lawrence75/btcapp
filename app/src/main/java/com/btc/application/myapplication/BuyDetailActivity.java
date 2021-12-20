@@ -83,7 +83,7 @@ public class BuyDetailActivity extends AppCompatActivity {
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                /*NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
                                  String channelId = "app1";
                                  if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
                                          NotificationChannel channel = new NotificationChannel(channelId,"app1",NotificationManager.IMPORTANCE_DEFAULT);
@@ -98,7 +98,30 @@ public class BuyDetailActivity extends AppCompatActivity {
                                          .setSmallIcon(R.mipmap.ic_launcher)
                                          .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher))
                                          .build();
-                                 manager.notify(1,notification);
+                                 manager.notify(1,notification);*/
+
+                String title = "123";
+                String content = "456";
+
+                String method = "msg/send?title=" + title + "&content=" + content;
+
+                String result = HttpUtils.getJsonByInternet(method);
+                Log.d("debugTest",result);
+
+                JSONObject data = new JSONObject();
+                Integer defaultPay = 0;
+                String imageUrl = "";
+
+                try {
+                    JSONObject jsonObject1 = new JSONObject(result);
+                    String code = jsonObject1.getString("code");
+                    if ("000000".equals(code))
+                    {
+                        data = jsonObject1.getJSONObject("data");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 Intent intent = new Intent(toolbar.getContext(), MainActivity.class);
                 startActivity(intent);

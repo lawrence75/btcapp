@@ -103,9 +103,6 @@ public class NotificationsFragment extends Fragment {
 
         noDataView = root.findViewById(R.id.noDataView);
 
-        registrationIDView = root.findViewById(R.id.registrationID);
-        registrationIDView.setText(JPushInterface.getRegistrationID(getContext()));
-
         gcmView = root.findViewById(R.id.gcmView);
         cnyView = root.findViewById(R.id.cnyView);
 

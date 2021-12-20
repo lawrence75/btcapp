@@ -29,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
@@ -145,6 +147,9 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         Log.v(TAG , code);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                        JPushInterface.getRegistrationID(loadingProgressBar.getContext());
+
                         JSONObject data = jsonObject1.getJSONObject("data");
                         SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
                         editor.putString("userAccount", data.getString("userAccount"));
